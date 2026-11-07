@@ -403,7 +403,7 @@ local Loc = (function()
         ["Aim mode"] = "Режим прицела", ["Direction"] = "Направление", ["Hitbox"] = "Хитбокс",
         ["Priority"] = "Приоритет", ["Config name"] = "Имя конфига", ["Language"] = "Язык",
         ["Offscreen arrows"] = "Стрелки за экраном", ["Tool info"] = "Инфо о предмете", ["Item ESP"] = "ESP предметов",
-        ["Run action"] = "Выполнить действие", ["Adjust value"] = "Изменить значение",
+        ["Accent theme"] = "Акцентная тема", ["Run action"] = "Выполнить действие", ["Adjust value"] = "Изменить значение",
         ["Tap to open settings"] = "Открыть настройки", ["Toggle feature"] = "Переключить функцию",
         ["Tap to change color"] = "Изменить цвет", ["Type a value"] = "Введите значение",
         ["Remove saved config."] = "Удалить сохранённый конфиг.", ["Write current settings to file."] = "Записать текущие настройки в файл.",
@@ -495,6 +495,70 @@ local Loc = (function()
         return text
     end
     return {L = L}
+end)()
+
+local ThemeIcons = (function()
+    local DATA = {
+        mint = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABVUlEQVR42u1ZyxWDMAzDflmCE90GRi7blFPHoKf2cYIS/A3SAMSS5U9I1wEAAAAAAHjh9Vw9j+cQ5B1FoHBZf0zUtgOOsm3sBgpd6wZu4LDkjdxAIYkbuoFTkFd0A6cgr/hdSkFcsSQ4JXnB8ygdcWE3cHryF+Og1MQF3MBNka+Ij7ubg7Ut1l4JNIbiefg6jO9fN17mPkcJ3L4HOPeBrWsk4ipZMrVLPGsPiNAnyl2JXxfgMZHGVlhNvLIvFQ0CNRnzGolF075niXjsAuJ7AC1z/yWyDuP73+6dcxHaqbtaIaz3EvVN0FSIyGMwqgjmd4GtI9oQoLL+xES4eC/BbRACQAD/OvQ8Fw6AAIHs6HFeUQlK8/VIWGjOEKTmd4t6piTcoFheHL5WlXuLzRSoJWHQWO3+Cp8pCcOJYr8HHJEzHqe+T91bN0R/djcRAQAAAAAAS3wAv32hTF9HCP0AAAAASUVORK5CYII=",
+        cyan = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABLUlEQVR42u2YUQ4CMQhEW+Il1PsfTT1G/TIxG5N1LQyDnfkymhSBB4W2JkmSJEl5uo2Rad4onE8Mgq0OoNGgn0SBCKBqfAkUiAC6aw9MgVE5nxAElQDtxAeiQARQz/sACkQA/bYXTIFROw8IgkqAPvvBFIiAEtkPPFcElMl+0PlWyvkAOyqBctl3ticCSmbf0a4IKJt9J/siYPqEa++pHkzaX56AE8rQuLTH63O/t/MyAXh3fPsdQyCMoQ4z7Ro6+0d+r7kOL7sMocvAyV4oAXtN7n+aoOaA/SyzzgH+dYtYjhz7jW4B5uwgzrcKfzLyXKuSqaigYoaXmcYYXFKYJvirE4DpEncLHHUGNFpjr8FvnQLuFXnveZ/6QsK7Qt4gtHU2+3GVigRJkiQJoyfFsn/UIl3lTgAAAABJRU5ErkJggg==",
+        purple = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABaElEQVR42u1Z2w2DMAx0rCwB+7QzlQnoTGWfdoz0CwlVVCUPP0LvPvmx73w2TkIEAAAA2CGl9EwpPa3isyX5xy0l6wJEL8TXb9d7CKd2wK+qa7uCPVpeUwT22u9aIkRvxLXnAnslr+UG9k5eWoTonbh0S3Av5KXicG/kW8eLvRFv3RLcK/lWeXDv5Gvz4TOQr8krnoF4zVw47ADLS4sSHM03ywGXmV5ERMtEg1fia47NZ0AIYVyJX2Z65QbSIL4tUAhhFNkDvolg4YrPIpTkULwIbYN9qq9JvDZek8PQniskhJBwXPYKeeRXmJPoEcFyieesxiI3Qq0coTFjRK/ESgZmi8Fm3gI5Vd37ndaSzmmBomNki5VYgnjJ0djsaWyZaNgSttouTd8GPQACaPSZFkryggMgAATQ6zdv/Q8HQAAIUCeAlzlg9jSGFoAAEMB8DtTGhwMgAASw70PLuHAAAQAAAAAAAP+JNyXc3DzeLHQhAAAAAElFTkSuQmCC",
+        pink = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABR0lEQVR42u2a3Q3CMAyEW4slmARGgwlgNJiEMcoTCEVAk9Q+2+19T0gI5/wT2wWGgRBCCCGEEEIIIVtj1DQ2nW7Tz4Oux9HbnlkA/gntEa5tzywALUJrhGvbq0E8nP/2eW17pgFYKra0o23P9ApoiTXt7A3XYWei4HJ4vF+f7/vVjMHZ7H86XgIORG0VyLBxBJL9mveVqe1VrAAGQIu5Jhd0Gmy+AnT3gFeWE+0BNotQcKd5BXoCoPUFROpNMEsQWnTyClhGN3r2uysgahB6dAnysGjOL+4BUYKwRId4Hu7tvNoU8AqCxrkcg5Gy4XGeRBSFPEcii0PYlwwiLe1KlkxZBVUylKvlteIYjN6xrZsqpAJ6nUCMVdgVaHUGtVNAe0CtU8itEt4E55xDr9ScApEeYz0eq90qoHQ22+8OamT40xUhhKyWJ7TFdYrD3LE+AAAAAElFTkSuQmCC",
+        red = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABbklEQVR42u1ayQ3CQAxMRmmCpqAJqAqagKYoA15ICAnYy/Y4mXnyWHsO7xExTYIgCIF47I+PyPpgIB8pAraeQLBEPyoFSgDTxheRArCQjxJBI8B45numQAlgvfF5pQCM5D1F0AiwP3asU6AEZHjqWqYA4eSv53ukCBwjUChCGgGs3LJYFzTOB6UAWdy3Wh9UzQVsiMjivFU9hDXzze2KvWCECKB03lEEZIq9RR+gJV95LLb2gxDyRmd+S1+gjn2DULX9IePMj+wT9OQbx6W0X9ATOpx2FG+B+XaZp0Qo7dc/ATWOGrvP80EkELCI1RBnO9yv6VMJCKv8y2GH2W8WYOhpYEC0tj++EXB0n0MAZ8JDBDC7FHWK0dIXthh7zj0gSAR4xo3h7q+LkAT4SE7vAj0fSt5jO2qdWiws8/r6bfX/FP3nlvfmOqRYiWstxKzWdR2BngY9xmJhJO4pBCzIWs2xVx334zBDPUEQhFXiCb4q2q/DvZAfAAAAAElFTkSuQmCC",
+        lime = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABKElEQVR42u2bwRWDMAxDgybofJw6GqfOxwb03tcDr41tOZIX4OlHUYwDY7hcLsY6zv06zv2y+OACo/jM54HVBc/Ha5MDULHnoSyeBkBl2tNmgAyA6rMejOKzToBSACxdHpTFOwQrALC94EBZfCqAu+IzTwBnQBYA5sEGlMWHA+gw0nIGMK1+9gkQBqDTNHdbSfwvDoKy+GVC8J/sgOK+nw6go/WnAegsvnUGzOoZ0HH1ZzZM6Gh96kYoGuDsdhnK4luFYNSLEpTFex4wGtwLRM8IoGp9egBLfiPEeDniEFS1fjqAO/ZfZircYeWpAFSJdwgOgtvhytUvd0C1+FIADOJTAHyzP4t4h2AFAKbVDwfwaX828akOYBSfBoBVvEMwev/7x0eXi77evo2TtRF5mSYAAAAASUVORK5CYII=",
+        gold = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCUlEQVR42u2YYQ6CMAyFofESXkMvoifVi+g1PAb+wmgiyYCur4zvS/hDYC1vb+1G1wEAAAAASBgel0EZ3/Y+AZZh9pUuwAEIkKT4qZYBDsjU+hQuMK/kt7qvsIggmTdVFhms5L1a41apAVmcsCYPa2n9L8nTIoOVPltjzKptUOUMj7iWKRlFPItKam7CnmOF7gRrO8F7fItIcjLp0+31uUQHpoOkT/374PHe83pMeRbwXMMR1i99vg//oAm7/+Dkgv587yU1gP8BCLDC3lmLYKto2uA4y98FMXjmZ3WBrRyDl3QCiiACIAACIAACIECbe4CS/HEAAiAAAiAAAiAAAiAAAgAAAMDeeAPK9qGwT6IVdgAAAABJRU5ErkJggg==",
+        blue = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAA+UlEQVR42u3a4Q2CMBCG4Z5hCR0NJ5CBcAIZTcY4f2oIIZbrlba8zwDY72vAtmkIAAAAAM5IvH+gH1Wtz5gGkSoKSBE2dylSS2CvQqT24NYipJXge4u4tBg+Zrxd6R8p70kwvwKef1FFjqsfVUt9HUoeGwAALZ4HqOrb+oz7M1yPWnVK7rCllSLWwCJys67dX48wH1WI/Bt8K6jXpmWtmNRFyFbwmNDeW+ZlGamKkLXwscFznhf8FpGihM4y40d8uafhO2HLZ+yZBPdTYc4LOC8AAKDZ84AcS2TuBziWwv2A2oNbi+B+QIvhY8bL/QD2++z3AQAAgDP6ACM9uSZEDGNyAAAAAElFTkSuQmCC",
+        emerald = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABh0lEQVR42u1aWxKCMAwsGY6gH3gguIieSi6iB9IPuEP9YoZxfPSRJins/jpDstvNthacAwAAAPTgvX947x9a9UmTfD9dvfYCkBXyWmK0llZ9+e1+vDSbdEDoKku6gazOu5QIZJG8pAhklbyUCK1V4lLhSNbJl34u1UK+1POpJvIl6rQ1ES+RC1Qjec76VDN5jj6odvK5/dAWyOf01W6BeE440pbIp/QbJIDmlVUOQvoOHoHb4fx0zrlhHjvrxJde2TKgaZpTP1397XB+rh9uSYx30sM8diE5EBWCa8JrMTSFyF2Q5KPwUkxLCC4nRp2jfyVrakOx4oXWCd0G2S5E3seDMydK5k6RGyGu8ZAI3KLvBVKFkNxpov9L55wIP21V3/bsHOIxdwSiAvw7rHCtdowAau8Gh3ns1oS1zhJUUl0NxPZHbueAABI2s2p/OAACQIB0AazlQGo/cAAEULCdFfvDARCAQQDtMVD/PgAjAAEggFoOcNSFAyCAITtq1Nu9AwAAAIA94wUwCf9wTumRSgAAAABJRU5ErkJggg==",
+        orange = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABmUlEQVR42u1aUbLCMAgUxku8C/nOUg/kO4teyGPUb+fZmsAGyHT5dCxhF9g0DacTjUY7sknGouvtsr4FcX1IFgF69AogASSABJAAEuDdxiqYNSa1LlSJBE9M6mG5AgnemARRallvcohYulvg0wIZlYBKhEkEs0lAVqF5G8wiAd2CggyoNZA9olp8WNYcehxeb5f1WyCW6tjz2bJmme8BntYYvcNIVeBRROgM4EcKrM4AfqRfngZnyf4o/5IW3HJ//vvt7/cnWhRzWuAT+L3fZ2oBM/gkEjS0/FvBNfwPpQVnq+PuHuzN7HJ/9mgCjICZzZI8vgccnYBz9Omrmklo//UIYYMAIpIFa4GmYFpVPQh8jgZ8Axew9eWL4BbIYPDww1DEaRAt1Fo5uAj/fBGaIUsj/eospVr6q/CW8Mn1Ie6bmw0fKLFVFHjvdVfPc8ghDUFnvvdur/f5MpejmYMS6dfj2VMiSE3Q2cCjSdAZwSNJcA1JecGjxuY9MZmHpCp9OfLEBBuSqkICD0MkgASQABJAAkgAjUZrsxeenAoTDO/GXwAAAABJRU5ErkJggg==",
+        white = "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABfUlEQVR42u1auxLCIBAkDJUW+pv5In/TFKaNVWYyTiA5uRdht1Uet7t3HGgIAAAAAABY4f1ZFsv1Y+8CRA/qW7oADug19905wIoQpEDP9nfnAAtikAI929+lA7QJij2rjxrggYDHLbwsnRJ7tr+5A/bUvyQBR+pbpkHybFnOPTzvw0ByQG5Ai/YvxZLODPRawGoCJ9UAbjfsqc/tiLN7HjhzUsvW0xxGLsEiJ6tHG/MWPNkBlm7gDry6D9B0g1Tw1Y2QBgmSwVelALVhoabEGfI4TifW442rLkirLnYXkO4eJdaIWhukpEDuuxIE40WopYcPiblVHJCz9DSHMVfwtNpqsxTYBl4i4nIElIK1IEG8D9hamRLgOm5vjNs+4B/VLW+W6p2gx2YoWZ7B20Ca/4cINYBfFSmqcpKVLFXPfXbJn8YoKmtcqlTfA2oCKs3NQVSUVrx2k9JuiNZ21yJS9T1AarMS8w6c+a9ZvNZ1Ndc07f68rQ0AAAAAQPv4AlW3zXe5V4UHAAAAAElFTkSuQmCC",
+    }
+    local B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    local function decode(data)
+        data = string.gsub(data, "[^" .. B64 .. "=]", "")
+        local out = {}
+        for i = 1, #data, 4 do
+            local chunk = string.sub(data, i, i + 3)
+            local a = string.find(B64, string.sub(chunk, 1, 1), 1, true)
+            local b = string.find(B64, string.sub(chunk, 2, 2), 1, true)
+            local c = string.find(B64, string.sub(chunk, 3, 3), 1, true)
+            local d = string.find(B64, string.sub(chunk, 4, 4), 1, true)
+            a = a and a - 1 or 0
+            b = b and b - 1 or 0
+            c = c and c - 1 or 0
+            d = d and d - 1 or 0
+            local n = a * 262144 + b * 4096 + c * 64 + d
+            local pad = 0
+            if string.sub(chunk, 3, 3) == "=" then pad = 2 elseif string.sub(chunk, 4, 4) == "=" then pad = 1 end
+            out[#out + 1] = string.char(math.floor(n / 65536) % 256)
+            if pad < 2 then out[#out + 1] = string.char(math.floor(n / 256) % 256) end
+            if pad < 1 then out[#out + 1] = string.char(n % 256) end
+        end
+        return table.concat(out)
+    end
+    local cache = {}
+    local fallback = {
+        Mint = "🌿", Cyan = "💧", Purple = "🔮", Pink = "💗", Red = "🔥", Lime = "⚡",
+        Gold = "👑", Blue = "🌊", Emerald = "💎", Orange = "☀️", White = "✦"
+    }
+    local function get(name)
+        local key = string.lower(name)
+        if cache[key] ~= nil then return cache[key] or nil end
+        local data = DATA[key]
+        if not data or type(getcustomasset) ~= "function" or type(writefile) ~= "function" then
+            cache[key] = false
+            return nil
+        end
+        local ok, path = pcall(function()
+            local dir = "hamer_icons"
+            if type(makefolder) == "function" and type(isfolder) == "function" and not isfolder(dir) then makefolder(dir) end
+            local file = dir .. "/" .. key .. ".png"
+            if type(isfile) == "function" and isfile(file) then return getcustomasset(file) end
+            writefile(file, decode(data))
+            return getcustomasset(file)
+        end)
+        cache[key] = (ok and type(path) == "string" and path ~= "") and path or false
+        return cache[key] or nil
+    end
+    return {get = get, fallback = function(name) return fallback[name] or "●" end}
 end)()
 
 local PALETTE = {
@@ -1445,6 +1509,34 @@ end
 local function themeCard(name)
     local col = ACCENTS[name]
     local card, cst = cardBase(name, "Accent theme")
+    local icon = ThemeIcons.get(name)
+    if icon then
+        local img = Instance.new("ImageLabel")
+        img.Size = UDim2.new(0, 36, 0, 36)
+        img.Position = UDim2.new(0, 14, 0.5, -18)
+        img.BackgroundTransparency = 1
+        img.Image = icon
+        img.ScaleType = Enum.ScaleType.Fit
+        img.ZIndex = 14
+        img.Parent = card
+    else
+        local glyph = Instance.new("TextLabel")
+        glyph.Text = ThemeIcons.fallback(name)
+        glyph.Font = FONT_REG
+        glyph.TextSize = FS(24)
+        glyph.TextColor3 = col
+        glyph.Size = UDim2.new(0, 36, 0, 36)
+        glyph.Position = UDim2.new(0, 14, 0.5, -18)
+        glyph.BackgroundTransparency = 1
+        glyph.ZIndex = 14
+        glyph.Parent = card
+    end
+    for _, lbl in ipairs(card:GetChildren()) do
+        if lbl:IsA("TextLabel") then
+            lbl.Position = UDim2.new(0, 58, lbl.Position.Y.Scale, lbl.Position.Y.Offset)
+            lbl.Size = UDim2.new(1, -122, lbl.Size.Y.Scale, lbl.Size.Y.Offset)
+        end
+    end
     if S.Accent == name then
         cst.Color = accent()
         cst.Transparency = 0.35
