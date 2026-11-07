@@ -4509,6 +4509,22 @@ builders.visual = function()
     end)
 end
 local Cosmetics = (function()
+local function cosmeticRoot(name)
+    local model = Instance.new("Model")
+    model.Name = name
+    model.Archivable = false
+    model.Parent = Workspace
+    pcall(function()
+        local hl = Instance.new("Highlight")
+        hl.Name = "HamerCullingGuard"
+        hl.Adornee = model
+        hl.FillTransparency = 1
+        hl.OutlineTransparency = 1
+        hl.Parent = model
+    end)
+    return model
+end
+
 local function neonPart(parent, shape, size, color, glow)
     local p = Instance.new("Part")
     p.Shape = shape
@@ -4538,9 +4554,7 @@ local function applyDong()
     local root = char and char:FindFirstChild("HumanoidRootPart")
     if not root then return end
     local s = S.DongSize
-    local model = Instance.new("Model")
-    model.Name = "HamerDong"
-    model.Parent = Workspace
+    local model = cosmeticRoot("HamerDong")
     Dong.model = model
     local ballL = neonPart(model, Enum.PartType.Ball, Vector3.new(0.56 * s, 0.56 * s, 0.56 * s), S.DongColor, S.DongGlow)
     local ballR = neonPart(model, Enum.PartType.Ball, Vector3.new(0.56 * s, 0.56 * s, 0.56 * s), S.DongColor, S.DongGlow)
@@ -4578,9 +4592,7 @@ local function applyFox()
     local white = Color3.fromRGB(246, 241, 234)
     local dark = Color3.fromRGB(38, 30, 26)
     local pink = Color3.fromRGB(255, 170, 180)
-    local model = Instance.new("Model")
-    model.Name = "HamerFox"
-    model.Parent = Workspace
+    local model = cosmeticRoot("HamerFox")
     Fox.model = model
     local parts = {}
     local function add(shape, size, color, pos, rot, tail)
@@ -4641,9 +4653,7 @@ local function applyWings()
     if not root then return end
     local c = accent()
     local white = Color3.fromRGB(255, 255, 255)
-    local model = Instance.new("Model")
-    model.Name = "HamerWings"
-    model.Parent = Workspace
+    local model = cosmeticRoot("HamerWings")
     Wings.model = model
     local parts = {}
     local function buildWing(sign)
@@ -4701,9 +4711,7 @@ local function applyHalo()
     if not char or not char:FindFirstChild("Head") then return end
     local c = accent()
     local c2 = c:Lerp(Color3.fromRGB(255, 255, 255), 0.6)
-    local model = Instance.new("Model")
-    model.Name = "HamerHalo"
-    model.Parent = Workspace
+    local model = cosmeticRoot("HamerHalo")
     Halo.model = model
     local balls = {}
     for i = 1, 40 do
@@ -4744,9 +4752,7 @@ local function applyChinaHat()
     local c = accent()
     local gold = Color3.fromRGB(255, 210, 90)
     local red = Color3.fromRGB(220, 55, 62)
-    local model = Instance.new("Model")
-    model.Name = "HamerChinaHat"
-    model.Parent = Workspace
+    local model = cosmeticRoot("HamerChinaHat")
     ChinaHat.model = model
     local brim = neonPart(model, Enum.PartType.Cylinder, Vector3.new(0.09, 3.05, 3.05), c, true)
     local band = neonPart(model, Enum.PartType.Cylinder, Vector3.new(0.12, 2.78, 2.78), gold, true)
@@ -4793,9 +4799,7 @@ local function applyKagune()
     local char = LocalPlayer.Character
     local root = char and char:FindFirstChild("HumanoidRootPart")
     if not root then return end
-    local model = Instance.new("Model")
-    model.Name = "HamerKagune"
-    model.Parent = Workspace
+    local model = cosmeticRoot("HamerKagune")
     KG.model = model
     local parts = {}
     for sx = -1, 1, 2 do
@@ -4860,9 +4864,7 @@ local function applyCompanion()
     if not char or not char:FindFirstChild("HumanoidRootPart") then return end
     local color = accent()
     local white = Color3.fromRGB(255, 255, 255)
-    local model = Instance.new("Model")
-    model.Name = "HamerCompanion"
-    model.Parent = Workspace
+    local model = cosmeticRoot("HamerCompanion")
     CMP.model = model
     local core = neonPart(model, Enum.PartType.Ball, Vector3.new(0.34, 0.34, 0.34), white, true)
     core.Transparency = 0.08
@@ -4913,9 +4915,7 @@ end
 
 local Cos = (function()
 local function cosmeticModel(name)
-    local model = Instance.new("Model")
-    model.Name = name
-    model.Parent = Workspace
+    local model = cosmeticRoot(name)
     return model
 end
 
