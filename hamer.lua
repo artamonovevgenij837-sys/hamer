@@ -647,6 +647,18 @@ for i = 1, 3 do
     if isClose then closeDot = d end
 end
 
+local tabs = {
+    {id = "combat", label = "Combat", icon = "⚔️"},
+    {id = "flick", label = "Flick", icon = "🎯"},
+    {id = "cosmetics", label = "Cosmetics", icon = "✨"},
+    {id = "visual", label = "Visuals", icon = "👁️"},
+    {id = "mm2", label = "MM2", icon = "🔪"},
+    {id = "fun", label = "Fun", icon = "🎮"},
+    {id = "places", label = "Places", icon = "🌐"},
+    {id = "configs", label = "Configs", icon = "💾"},
+    {id = "themes", label = "Themes", icon = "🎨"}
+}
+
 local tabBar = Instance.new("Frame")
 local tabHeight = #tabs > 8 and (S.Mobile and 38 or 36) or (S.Mobile and 44 or 40)
 local tabGap = #tabs > 8 and 3 or 4
@@ -806,17 +818,6 @@ gridLayout.Parent = grid
 local builders = {}
 local tabButtons = {}
 local currentTab = "combat"
-local tabs = {
-    {id = "combat", label = "Combat", icon = "⚔️"},
-    {id = "flick", label = "Flick", icon = "🎯"},
-    {id = "cosmetics", label = "Cosmetics", icon = "✨"},
-    {id = "visual", label = "Visuals", icon = "👁️"},
-    {id = "mm2", label = "MM2", icon = "🔪"},
-    {id = "fun", label = "Fun", icon = "🎮"},
-    {id = "places", label = "Places", icon = "🌐"},
-    {id = "configs", label = "Configs", icon = "💾"},
-    {id = "themes", label = "Themes", icon = "🎨"}
-}
 
 local ActiveCards = {}
 local cardOrder = 0
