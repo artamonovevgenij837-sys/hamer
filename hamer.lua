@@ -64,7 +64,7 @@ local S = {
     AutoCollect = false,
     Watermark = true,
     Dong = false, DongSize = 1, DongGlow = false, DongColor = Color3.fromRGB(232, 190, 158),
-    DongHeadColor = Color3.fromRGB(200, 60, 60), CosmeticGlow = true,
+    DongHeadColor = Color3.fromRGB(200, 60, 60),
     Wings = false, Halo = false, ChinaHat = false, Kagune = false, Companion = false, NoAnims = false,
     Korblox = false, GhostLegs = false,
     AvatarScale = 1, ConfigName = "default", DroneActive = false, DroneView = 1, DroneManual = false, DroneSpeed = 45, Mobile = false, Optimize = 2,
@@ -95,6 +95,33 @@ local S = {
     FlickJitter = false, FlickJitterAngle = 60, FlickJitterHz = 8,
     FlickTracers = false, FlickTracerColor = Color3.fromRGB(178, 112, 255)
 }
+
+local COSMETIC_DEFAULTS = {
+    FoxColor1 = Color3.fromRGB(232, 122, 46), FoxColor2 = Color3.fromRGB(246, 241, 234), FoxGlow = false,
+    WingsColor1 = Color3.fromRGB(0, 224, 184), WingsColor2 = Color3.fromRGB(255, 255, 255), WingsGlow = true,
+    HaloColor1 = Color3.fromRGB(0, 224, 184), HaloColor2 = Color3.fromRGB(255, 255, 255), HaloGlow = true,
+    ChinaHatColor1 = Color3.fromRGB(220, 55, 62), ChinaHatColor2 = Color3.fromRGB(255, 210, 90), ChinaHatGlow = true,
+    KaguneColor1 = Color3.fromRGB(180, 22, 38), KaguneColor2 = Color3.fromRGB(255, 82, 96), KaguneGlow = true,
+    CompanionColor1 = Color3.fromRGB(0, 224, 184), CompanionColor2 = Color3.fromRGB(255, 255, 255), CompanionGlow = true,
+    AuraColor1 = Color3.fromRGB(0, 224, 184), AuraColor2 = Color3.fromRGB(255, 255, 255), AuraGlow = true,
+    CrownColor1 = Color3.fromRGB(255, 205, 70), CrownColor2 = Color3.fromRGB(0, 224, 184), CrownGlow = true,
+    HornsColor1 = Color3.fromRGB(210, 36, 48), HornsColor2 = Color3.fromRGB(255, 148, 76), HornsGlow = true,
+    CatEarsColor1 = Color3.fromRGB(0, 224, 184), CatEarsColor2 = Color3.fromRGB(255, 168, 205), CatEarsGlow = true,
+    JetpackColor1 = Color3.fromRGB(0, 224, 184), JetpackColor2 = Color3.fromRGB(255, 255, 255), JetpackGlow = true,
+    TailColor1 = Color3.fromRGB(0, 224, 184), TailColor2 = Color3.fromRGB(255, 255, 255), TailGlow = true,
+    TopHatColor1 = Color3.fromRGB(0, 224, 184), TopHatColor2 = Color3.fromRGB(255, 70, 110), TopHatGlow = true,
+    VisorColor1 = Color3.fromRGB(0, 224, 184), VisorColor2 = Color3.fromRGB(255, 255, 255), VisorGlow = true,
+    ScytheColor1 = Color3.fromRGB(0, 224, 184), ScytheColor2 = Color3.fromRGB(96, 34, 42), ScytheGlow = true,
+    OniMaskColor1 = Color3.fromRGB(168, 26, 40), OniMaskColor2 = Color3.fromRGB(0, 224, 184), OniMaskGlow = true,
+    GasMaskColor1 = Color3.fromRGB(0, 224, 184), GasMaskColor2 = Color3.fromRGB(34, 38, 46), GasMaskGlow = true,
+    NeonMaskColor1 = Color3.fromRGB(0, 224, 184), NeonMaskColor2 = Color3.fromRGB(255, 255, 255), NeonMaskGlow = true,
+    CapColor1 = Color3.fromRGB(0, 224, 184), CapColor2 = Color3.fromRGB(255, 255, 255), CapGlow = true,
+    CyberPackColor1 = Color3.fromRGB(0, 224, 184), CyberPackColor2 = Color3.fromRGB(255, 255, 255), CyberPackGlow = true,
+    AngelPackColor1 = Color3.fromRGB(255, 252, 240), AngelPackColor2 = Color3.fromRGB(255, 210, 110), AngelPackGlow = true
+}
+for k, v in pairs(COSMETIC_DEFAULTS) do
+    if S[k] == nil then S[k] = v end
+end
 
 S.Mobile = (UIS.TouchEnabled and not UIS.KeyboardEnabled) or false
 
@@ -315,7 +342,7 @@ local SUBTITLES = {
     Aimbot = "Auto aim at target", AimbotFOV = "Aim radius", AimbotSmooth = "Aim smoothing",
     Hitbox = "Expand hitbox", HitboxSize = "Hitbox size", InfJump = "Infinite jumping",
     AntiAfk = "Stay active", AutoCollect = "Collect nearby items", Watermark = "On-screen watermark",
-    CosmeticGlow = "Neon materials", Dong = "Attach a 3D model", DongGlow = "Neon skin",
+    Dong = "Attach a 3D model", DongGlow = "Neon skin",
     DongSize = "Model size", Korblox = "Replace right leg", GhostLegs = "Transparent legs",
     NoAnims = "Disable animations", Wings = "Layered feather wings", Halo = "Neon halo",
     ChinaHat = "Neon hat", Kagune = "Neon kagune", Companion = "Floating orb",
@@ -660,7 +687,27 @@ local PALETTE = {
     Color3.fromRGB(255, 255, 255),
     Color3.fromRGB(232, 190, 158),
     Color3.fromRGB(150, 100, 70),
-    Color3.fromRGB(200, 60, 60)
+    Color3.fromRGB(200, 60, 60),
+    Color3.fromRGB(0, 224, 184),
+    Color3.fromRGB(255, 150, 70),
+    Color3.fromRGB(90, 150, 255),
+    Color3.fromRGB(70, 235, 155),
+    Color3.fromRGB(120, 230, 255),
+    Color3.fromRGB(200, 160, 255),
+    Color3.fromRGB(255, 60, 180),
+    Color3.fromRGB(255, 170, 200),
+    Color3.fromRGB(255, 240, 120),
+    Color3.fromRGB(255, 180, 40),
+    Color3.fromRGB(255, 110, 90),
+    Color3.fromRGB(220, 30, 60),
+    Color3.fromRGB(130, 80, 255),
+    Color3.fromRGB(35, 60, 160),
+    Color3.fromRGB(0, 140, 150),
+    Color3.fromRGB(40, 150, 80),
+    Color3.fromRGB(130, 145, 165),
+    Color3.fromRGB(210, 220, 235),
+    Color3.fromRGB(55, 60, 72),
+    Color3.fromRGB(14, 16, 22)
 }
 
 local function corner(inst, r)
@@ -1237,6 +1284,96 @@ local function settingStep(text, key, minv, maxv, step, suffix, onChange)
     refresh()
 end
 
+local function openPalette(current, onPick)
+    local old = gui:FindFirstChild("HamerPalette")
+    if old then old:Destroy() end
+    local overlay = Instance.new("Frame")
+    overlay.Name = "HamerPalette"
+    overlay.Size = UDim2.new(1, 0, 1, 0)
+    overlay.BackgroundColor3 = Color3.fromRGB(4, 6, 10)
+    overlay.BackgroundTransparency = 0.35
+    overlay.ZIndex = 60
+    overlay.Parent = gui
+    local dismiss = Instance.new("TextButton")
+    dismiss.Size = UDim2.new(1, 0, 1, 0)
+    dismiss.BackgroundTransparency = 1
+    dismiss.Text = ""
+    dismiss.AutoButtonColor = false
+    dismiss.ZIndex = 60
+    dismiss.Parent = overlay
+    dismiss.MouseButton1Click:Connect(function()
+        overlay:Destroy()
+    end)
+    local box = Instance.new("TextButton")
+    box.Size = UDim2.new(0, 254, 0, 254)
+    box.AnchorPoint = Vector2.new(0.5, 0.5)
+    box.Position = UDim2.new(0.5, 0, 0.5, 0)
+    box.BackgroundColor3 = UI.panel
+    box.BackgroundTransparency = 0.02
+    box.Text = ""
+    box.AutoButtonColor = false
+    box.ZIndex = 61
+    box.Parent = overlay
+    corner(box, 14)
+    stroke(box, accent(), 0.55, 1)
+    local title = Instance.new("TextLabel")
+    title.Text = "COLOR"
+    title.Font = FONT_BOLD
+    title.TextSize = FS(11)
+    title.TextColor3 = UI.sub
+    title.TextXAlignment = Enum.TextXAlignment.Left
+    title.Size = UDim2.new(1, -60, 0, 30)
+    title.Position = UDim2.new(0, 12, 0, 6)
+    title.BackgroundTransparency = 1
+    title.ZIndex = 62
+    title.Parent = box
+    local close = Instance.new("TextButton")
+    close.Text = "×"
+    close.Font = FONT_BOLD
+    close.TextSize = FS(18)
+    close.TextColor3 = UI.sub
+    close.BackgroundTransparency = 1
+    close.Size = UDim2.new(0, 30, 0, 30)
+    close.Position = UDim2.new(1, -38, 0, 5)
+    close.ZIndex = 62
+    close.Parent = box
+    close.MouseButton1Click:Connect(function()
+        overlay:Destroy()
+    end)
+    local gridFrame = Instance.new("Frame")
+    gridFrame.Size = UDim2.new(0, 234, 0, 194)
+    gridFrame.Position = UDim2.new(0, 10, 0, 46)
+    gridFrame.BackgroundTransparency = 1
+    gridFrame.ZIndex = 62
+    gridFrame.Parent = box
+    local gridLayout = Instance.new("UIGridLayout")
+    gridLayout.CellSize = UDim2.new(0, 34, 0, 34)
+    gridLayout.CellPadding = UDim2.new(0, 6, 0, 6)
+    gridLayout.FillDirection = Enum.FillDirection.Horizontal
+    gridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    gridLayout.Parent = gridFrame
+    for i, c in ipairs(PALETTE) do
+        local sw = Instance.new("TextButton")
+        sw.Size = UDim2.fromOffset(34, 34)
+        sw.BackgroundColor3 = c
+        sw.Text = c == current and "✓" or ""
+        sw.TextSize = FS(15)
+        sw.Font = FONT_BOLD
+        sw.TextColor3 = (c.R * 0.299 + c.G * 0.587 + c.B * 0.114) > 0.62 and Color3.fromRGB(10, 12, 18) or Color3.fromRGB(255, 255, 255)
+        sw.AutoButtonColor = false
+        sw.LayoutOrder = i
+        sw.ZIndex = 63
+        sw.Parent = gridFrame
+        corner(sw, 8)
+        stroke(sw, UI.line, 0.35, 1)
+        sw.MouseButton1Click:Connect(function()
+            click()
+            overlay:Destroy()
+            onPick(c)
+        end)
+    end
+end
+
 local function settingColor(text, key, onChange)
     local row = panelRow(text, 44)
     local dot = Instance.new("Frame")
@@ -1249,14 +1386,11 @@ local function settingColor(text, key, onChange)
     corner(dot, 12)
     stroke(dot, UI.line, 0.5, 2)
     row.MouseButton1Click:Connect(function()
-        local idx = 1
-        for i, c in ipairs(PALETTE) do
-            if c == S[key] then idx = i; break end
-        end
-        S[key] = PALETTE[(idx % #PALETTE) + 1]
-        dot.BackgroundColor3 = S[key]
-        click()
-        if onChange then onChange(S[key]) end
+        openPalette(S[key], function(c)
+            S[key] = c
+            dot.BackgroundColor3 = c
+            if onChange then onChange(c) end
+        end)
     end)
 end
 
@@ -1669,14 +1803,11 @@ local function colorRow(text, key, onChange)
     corner(dot, 14)
     stroke(dot, UI.line, 0.5, 2)
     card.MouseButton1Click:Connect(function()
-        local idx = 1
-        for i, c in ipairs(PALETTE) do
-            if c == S[key] then idx = i; break end
-        end
-        S[key] = PALETTE[(idx % #PALETTE) + 1]
-        dot.BackgroundColor3 = S[key]
-        click()
-        if onChange then onChange(S[key]) end
+        openPalette(S[key], function(c)
+            S[key] = c
+            dot.BackgroundColor3 = c
+            if onChange then onChange(c) end
+        end)
     end)
 end
 
@@ -4786,6 +4917,14 @@ builders.visual = function()
     end)
 end
 local Cosmetics = (function()
+local function gradColor(c1, c2, f)
+    f = tonumber(f) or 0
+    if f < 0 then f = 0 elseif f > 1 then f = 1 end
+    return c1:Lerp(c2, f)
+end
+local function itemGlow(name)
+    return S[name .. "Glow"] ~= false
+end
 local function cosmeticRoot(name)
     local model = Instance.new("Model")
     model.Name = name
@@ -4812,7 +4951,7 @@ local function neonPart(parent, shape, size, color, glow)
     p.CanTouch = false
     p.CastShadow = false
     p.Massless = true
-    if glow and S.CosmeticGlow ~= false then
+    if glow then
         p.Material = Enum.Material.Neon
     else
         p.Material = Enum.Material.SmoothPlastic
@@ -4831,13 +4970,23 @@ local function applyDong()
     local root = char and char:FindFirstChild("HumanoidRootPart")
     if not root then return end
     local s = S.DongSize
+    local c1 = S.DongColor
+    local c2 = S.DongHeadColor
+    local glow = S.DongGlow
     local model = cosmeticRoot("HamerDong")
     Dong.model = model
-    local ballL = neonPart(model, Enum.PartType.Ball, Vector3.new(0.56 * s, 0.56 * s, 0.56 * s), S.DongColor, S.DongGlow)
-    local ballR = neonPart(model, Enum.PartType.Ball, Vector3.new(0.56 * s, 0.56 * s, 0.56 * s), S.DongColor, S.DongGlow)
+    local ballL = neonPart(model, Enum.PartType.Ball, Vector3.new(0.56 * s, 0.56 * s, 0.56 * s), c1, glow)
+    local ballR = neonPart(model, Enum.PartType.Ball, Vector3.new(0.56 * s, 0.56 * s, 0.56 * s), c1, glow)
     local len = 1.25 * s
-    local shaft = neonPart(model, Enum.PartType.Cylinder, Vector3.new(len, 0.5 * s, 0.5 * s), S.DongColor, S.DongGlow)
-    local head = neonPart(model, Enum.PartType.Ball, Vector3.new(0.62 * s, 0.62 * s, 0.62 * s), S.DongHeadColor, S.DongGlow)
+    local segCount = 6
+    local segLen = len / segCount
+    local shaft = {}
+    for i = 1, segCount do
+        local f = (i - 1) / (segCount - 1) * 0.82
+        local radius = 0.5 * s * (1 - (i - 1) * 0.025)
+        shaft[i] = neonPart(model, Enum.PartType.Cylinder, Vector3.new(segLen + 0.012, radius, radius), gradColor(c1, c2, f), glow)
+    end
+    local head = neonPart(model, Enum.PartType.Ball, Vector3.new(0.62 * s, 0.62 * s, 0.62 * s), c2, glow)
     local t = 0
     Dong.conn = RunService.RenderStepped:Connect(function(dt)
         if not S.Dong or not model.Parent then return end
@@ -4851,7 +5000,10 @@ local function applyDong()
         local off = CFrame.new(0, -0.62 * s, -0.5 * s)
         ballL.CFrame = cf * off * CFrame.new(-0.28 * s, 0, 0)
         ballR.CFrame = cf * off * CFrame.new(0.28 * s, 0, 0)
-        shaft.CFrame = cf * off * CFrame.new(0, 0, -len / 2) * CFrame.Angles(0, math.rad(90), 0) * CFrame.Angles(0, 0, sway)
+        for i = 1, segCount do
+            local z = -(i - 0.5) * segLen
+            shaft[i].CFrame = cf * off * CFrame.new(0, 0, z) * CFrame.Angles(0, math.rad(90), 0) * CFrame.Angles(0, 0, sway)
+        end
         head.CFrame = cf * off * CFrame.new(0, 0, -len) * CFrame.Angles(0, 0, sway)
     end)
 end
@@ -4865,40 +5017,40 @@ local function applyFox()
     local root = char and char:FindFirstChild("HumanoidRootPart")
     if not root then return end
     local sc = S.FoxSize or 1
-    local orange = Color3.fromRGB(232, 122, 46)
-    local white = Color3.fromRGB(246, 241, 234)
+    local c1 = S.FoxColor1
+    local c2 = S.FoxColor2
+    local glow = itemGlow("Fox")
     local dark = Color3.fromRGB(38, 30, 26)
-    local pink = Color3.fromRGB(255, 170, 180)
+    local pink = gradColor(c1, c2, 0.82)
     local model = cosmeticRoot("HamerFox")
     Fox.model = model
     local parts = {}
     local function add(shape, size, color, pos, rot, tail)
-        local p = neonPart(model, shape, Vector3.new(size.X * sc, size.Y * sc, size.Z * sc), color, false)
-        p.Material = Enum.Material.SmoothPlastic
+        local p = neonPart(model, shape, Vector3.new(size.X * sc, size.Y * sc, size.Z * sc), color, glow)
         local off = CFrame.new(pos.X * sc, pos.Y * sc, pos.Z * sc)
         if rot then off = off * rot end
         table.insert(parts, {p = p, off = off, tail = tail or 0})
     end
-    add(Enum.PartType.Ball, Vector3.new(0.5, 0.42, 0.72), orange, Vector3.new(0, 0, 0))
-    add(Enum.PartType.Block, Vector3.new(0.3, 0.24, 0.18), white, Vector3.new(0, -0.04, -0.35))
-    add(Enum.PartType.Ball, Vector3.new(0.46, 0.44, 0.46), orange, Vector3.new(0, 0.27, -0.36))
-    add(Enum.PartType.Block, Vector3.new(0.24, 0.16, 0.24), white, Vector3.new(0, 0.18, -0.59))
+    add(Enum.PartType.Ball, Vector3.new(0.5, 0.42, 0.72), gradColor(c1, c2, 0.18), Vector3.new(0, 0, 0))
+    add(Enum.PartType.Block, Vector3.new(0.3, 0.24, 0.18), c2, Vector3.new(0, -0.04, -0.35))
+    add(Enum.PartType.Ball, Vector3.new(0.46, 0.44, 0.46), gradColor(c1, c2, 0.3), Vector3.new(0, 0.27, -0.36))
+    add(Enum.PartType.Block, Vector3.new(0.24, 0.16, 0.24), c2, Vector3.new(0, 0.18, -0.59))
     add(Enum.PartType.Ball, Vector3.new(0.09, 0.08, 0.09), dark, Vector3.new(0, 0.2, -0.72))
     add(Enum.PartType.Ball, Vector3.new(0.075, 0.085, 0.075), dark, Vector3.new(-0.11, 0.34, -0.55))
     add(Enum.PartType.Ball, Vector3.new(0.075, 0.085, 0.075), dark, Vector3.new(0.11, 0.34, -0.55))
-    add(Enum.PartType.Ball, Vector3.new(0.025, 0.025, 0.025), white, Vector3.new(-0.09, 0.37, -0.57))
-    add(Enum.PartType.Ball, Vector3.new(0.025, 0.025, 0.025), white, Vector3.new(0.09, 0.37, -0.57))
-    add(Enum.PartType.Block, Vector3.new(0.16, 0.26, 0.08), orange, Vector3.new(-0.14, 0.52, -0.33), CFrame.Angles(0, 0, math.rad(16)))
-    add(Enum.PartType.Block, Vector3.new(0.16, 0.26, 0.08), orange, Vector3.new(0.14, 0.52, -0.33), CFrame.Angles(0, 0, math.rad(-16)))
+    add(Enum.PartType.Ball, Vector3.new(0.025, 0.025, 0.025), c2, Vector3.new(-0.09, 0.37, -0.57))
+    add(Enum.PartType.Ball, Vector3.new(0.025, 0.025, 0.025), c2, Vector3.new(0.09, 0.37, -0.57))
+    add(Enum.PartType.Block, Vector3.new(0.16, 0.26, 0.08), gradColor(c1, c2, 0.72), Vector3.new(-0.14, 0.52, -0.33), CFrame.Angles(0, 0, math.rad(16)))
+    add(Enum.PartType.Block, Vector3.new(0.16, 0.26, 0.08), gradColor(c1, c2, 0.72), Vector3.new(0.14, 0.52, -0.33), CFrame.Angles(0, 0, math.rad(-16)))
     add(Enum.PartType.Block, Vector3.new(0.1, 0.16, 0.03), pink, Vector3.new(-0.14, 0.5, -0.37), CFrame.Angles(0, 0, math.rad(16)))
     add(Enum.PartType.Block, Vector3.new(0.1, 0.16, 0.03), pink, Vector3.new(0.14, 0.5, -0.37), CFrame.Angles(0, 0, math.rad(-16)))
-    add(Enum.PartType.Block, Vector3.new(0.13, 0.17, 0.3), orange, Vector3.new(-0.16, -0.27, -0.2))
-    add(Enum.PartType.Block, Vector3.new(0.13, 0.17, 0.3), orange, Vector3.new(0.16, -0.27, -0.2))
+    add(Enum.PartType.Block, Vector3.new(0.13, 0.17, 0.3), c1, Vector3.new(-0.16, -0.27, -0.2))
+    add(Enum.PartType.Block, Vector3.new(0.13, 0.17, 0.3), c1, Vector3.new(0.16, -0.27, -0.2))
     add(Enum.PartType.Block, Vector3.new(0.12, 0.08, 0.12), dark, Vector3.new(-0.16, -0.36, -0.31))
     add(Enum.PartType.Block, Vector3.new(0.12, 0.08, 0.12), dark, Vector3.new(0.16, -0.36, -0.31))
-    add(Enum.PartType.Block, Vector3.new(0.19, 0.19, 0.5), orange, Vector3.new(0, 0.08, 0.5), CFrame.Angles(math.rad(30), 0, 0), 1)
-    add(Enum.PartType.Block, Vector3.new(0.16, 0.16, 0.36), orange, Vector3.new(0, 0.18, 0.79), CFrame.Angles(math.rad(20), 0, 0), 2)
-    add(Enum.PartType.Ball, Vector3.new(0.18, 0.18, 0.18), white, Vector3.new(0, 0.27, 0.97), nil, 3)
+    add(Enum.PartType.Block, Vector3.new(0.19, 0.19, 0.5), gradColor(c1, c2, 0.48), Vector3.new(0, 0.08, 0.5), CFrame.Angles(math.rad(30), 0, 0), 1)
+    add(Enum.PartType.Block, Vector3.new(0.16, 0.16, 0.36), gradColor(c1, c2, 0.7), Vector3.new(0, 0.18, 0.79), CFrame.Angles(math.rad(20), 0, 0), 2)
+    add(Enum.PartType.Ball, Vector3.new(0.18, 0.18, 0.18), c2, Vector3.new(0, 0.27, 0.97), nil, 3)
     local t = 0
     Fox.conn = RunService.RenderStepped:Connect(function(dt)
         if not S.Fox or not model.Parent then return end
@@ -4928,8 +5080,9 @@ local function applyWings()
     local char = LocalPlayer.Character
     local root = char and char:FindFirstChild("HumanoidRootPart")
     if not root then return end
-    local c = accent()
-    local white = Color3.fromRGB(255, 255, 255)
+    local c1 = S.WingsColor1
+    local c2 = S.WingsColor2
+    local glow = itemGlow("Wings")
     local model = cosmeticRoot("HamerWings")
     Wings.model = model
     local parts = {}
@@ -4941,10 +5094,11 @@ local function applyWings()
             local h = 1.25 + (1 - t) * 0.78
             local rot = 5 + t * 16
             for row = 1, 3 do
-                local p = neonPart(model, Enum.PartType.Block, Vector3.new(0.4, h / 3 + 0.15, 0.12), c:Lerp(white, 0.12 + t * 0.48 + (row - 1) * 0.06), true)
+                local v = (row - 1) / 2
+                local p = neonPart(model, Enum.PartType.Block, Vector3.new(0.4, h / 3 + 0.15, 0.12), gradColor(c1, c2, 0.08 + v * 0.58 + t * 0.34), glow)
                 table.insert(parts, {p = p, sign = sign, x = x, y = topY - h * (row - 0.5) / 3, rot = rot, z = 0.46 + (row - 1) * 0.035})
             end
-            local bone = neonPart(model, Enum.PartType.Block, Vector3.new(0.44, 0.13, 0.16), c:Lerp(white, 0.3 + t * 0.4), true)
+            local bone = neonPart(model, Enum.PartType.Block, Vector3.new(0.44, 0.13, 0.16), gradColor(c1, c2, 0.24 + t * 0.36), glow)
             table.insert(parts, {p = bone, sign = sign, x = x, y = topY, rot = rot, z = 0.45})
         end
         for i = 1, 6 do
@@ -4953,10 +5107,10 @@ local function applyWings()
             local topY = 2.06 + math.sin(t * math.pi) * 0.36 - t * 0.58
             local h = 1.25 + (1 - t) * 0.78
             local len = 0.72 + (1 - t) * 0.5
-            local p = neonPart(model, Enum.PartType.Block, Vector3.new(0.23, len, 0.11), white:Lerp(c, 0.2), true)
+            local p = neonPart(model, Enum.PartType.Block, Vector3.new(0.23, len, 0.11), gradColor(c1, c2, 0.58 + t * 0.24), glow)
             table.insert(parts, {p = p, sign = sign, x = x, y = topY - h - len * 0.32, rot = 9 + t * 28, z = 0.48})
         end
-        local joint = neonPart(model, Enum.PartType.Ball, Vector3.new(0.36, 0.36, 0.36), c:Lerp(white, 0.18), true)
+        local joint = neonPart(model, Enum.PartType.Ball, Vector3.new(0.36, 0.36, 0.36), gradColor(c1, c2, 0.2), glow)
         table.insert(parts, {p = joint, sign = sign, x = 0.55, y = 1.95, rot = 0, z = 0.45})
     end
     buildWing(-1)
@@ -4986,21 +5140,23 @@ local function applyHalo()
     if not S.Halo then return end
     local char = LocalPlayer.Character
     if not char or not char:FindFirstChild("Head") then return end
-    local c = accent()
-    local c2 = c:Lerp(Color3.fromRGB(255, 255, 255), 0.6)
+    local c1 = S.HaloColor1
+    local c2 = S.HaloColor2
+    local glow = itemGlow("Halo")
     local model = cosmeticRoot("HamerHalo")
     Halo.model = model
     local balls = {}
     for i = 1, 40 do
-        local p = neonPart(model, Enum.PartType.Ball, Vector3.new(0.16, 0.16, 0.16), i % 5 == 0 and c2 or c, true)
-        if i == 1 then
+        local a = (i - 1) / 40 * math.pi * 2
+        local p = neonPart(model, Enum.PartType.Ball, Vector3.new(0.16, 0.16, 0.16), gradColor(c1, c2, (math.sin(a) + 1) * 0.5), glow)
+        if i == 1 and glow then
             local light = Instance.new("PointLight")
-            light.Color = c
+            light.Color = c1
             light.Range = 8
             light.Brightness = 2
             light.Parent = p
         end
-        table.insert(balls, {p = p, a = (i - 1) / 40 * math.pi * 2})
+        table.insert(balls, {p = p, a = a})
     end
     local t = 0
     Halo.conn = RunService.RenderStepped:Connect(function(dt)
@@ -5026,24 +5182,31 @@ local function applyChinaHat()
     if not S.ChinaHat then return end
     local char = LocalPlayer.Character
     if not char or not char:FindFirstChild("Head") then return end
-    local c = accent()
-    local gold = Color3.fromRGB(255, 210, 90)
-    local red = Color3.fromRGB(220, 55, 62)
+    local c1 = S.ChinaHatColor1
+    local c2 = S.ChinaHatColor2
+    local glow = itemGlow("ChinaHat")
     local model = cosmeticRoot("HamerChinaHat")
     ChinaHat.model = model
-    local brim = neonPart(model, Enum.PartType.Cylinder, Vector3.new(0.09, 3.05, 3.05), c, true)
-    local band = neonPart(model, Enum.PartType.Cylinder, Vector3.new(0.12, 2.78, 2.78), gold, true)
+    local brim = neonPart(model, Enum.PartType.Cylinder, Vector3.new(0.09, 3.05, 3.05), c1, glow)
+    local band = neonPart(model, Enum.PartType.Cylinder, Vector3.new(0.12, 2.78, 2.78), gradColor(c1, c2, 0.14), glow)
     local rings = {}
-    for i = 1, 20 do
-        local t = i / 20
+    for i = 1, 28 do
+        local t = i / 28
         local d = 2.68 * (1 - t) + 0.1 * t
-        local p = neonPart(model, Enum.PartType.Cylinder, Vector3.new(0.065, d, d), i % 3 == 0 and gold or c, true)
+        local p = neonPart(model, Enum.PartType.Cylinder, Vector3.new(0.065, d, d), gradColor(c1, c2, 0.16 + t * 0.84), glow)
         table.insert(rings, {p = p, y = 0.24 + t * 1.3})
     end
-    local top = neonPart(model, Enum.PartType.Ball, Vector3.new(0.18, 0.18, 0.18), gold, true)
+    local top = neonPart(model, Enum.PartType.Ball, Vector3.new(0.18, 0.18, 0.18), c2, glow)
+    if glow then
+        local light = Instance.new("PointLight")
+        light.Color = c2
+        light.Range = 7
+        light.Brightness = 1.8
+        light.Parent = top
+    end
     local tassel = {}
     for i = 1, 5 do
-        tassel[i] = neonPart(model, Enum.PartType.Ball, Vector3.new(0.1 - i * 0.012, 0.1 - i * 0.012, 0.1 - i * 0.012), i % 2 == 0 and red or gold, true)
+        tassel[i] = neonPart(model, Enum.PartType.Ball, Vector3.new(0.1 - i * 0.012, 0.1 - i * 0.012, 0.1 - i * 0.012), gradColor(c1, c2, 0.3 + i * 0.12), glow)
     end
     local t = 0
     ChinaHat.conn = RunService.RenderStepped:Connect(function(dt)
@@ -5078,18 +5241,25 @@ local function applyKagune()
     if not root then return end
     local model = cosmeticRoot("HamerKagune")
     KG.model = model
+    local c1 = S.KaguneColor1
+    local c2 = S.KaguneColor2
+    local glow = itemGlow("Kagune")
     local parts = {}
     for sx = -1, 1, 2 do
         for sy = -1, 1, 2 do
-            for i = 1, 24 do
-                local t = (i - 1) / 23
+            for i = 1, 26 do
+                local t = (i - 1) / 25
+                local s = 0.36 * (1 - t * 0.58)
                 local p = Instance.new("Part")
-                p.Shape = Enum.PartType.Block
-                p.Size = Vector3.new(0.34, 0.34, 0.34)
-                p.Color = Color3.fromRGB(220, 30, 40)
-                p.Material = Enum.Material.Neon
+                p.Shape = Enum.PartType.Ball
+                p.Size = Vector3.new(s, s, s)
+                p.Color = gradColor(c1, c2, t)
+                p.Material = glow and Enum.Material.Neon or Enum.Material.SmoothPlastic
                 p.Anchored = true
                 p.CanCollide = false
+                p.CanQuery = false
+                p.CanTouch = false
+                p.CastShadow = false
                 p.TopSurface = Enum.SurfaceType.Smooth
                 p.BottomSurface = Enum.SurfaceType.Smooth
                 p.Parent = model
@@ -5099,6 +5269,13 @@ local function applyKagune()
                 p:SetAttribute("t", t)
                 p:SetAttribute("si", i)
                 p:SetAttribute("us", sy)
+                if i == 26 and glow then
+                    local light = Instance.new("PointLight")
+                    light.Color = c2
+                    light.Range = 5
+                    light.Brightness = 1.6
+                    light.Parent = p
+                end
                 table.insert(parts, p)
             end
         end
@@ -5139,24 +5316,28 @@ local function applyCompanion()
     if not S.Companion then return end
     local char = LocalPlayer.Character
     if not char or not char:FindFirstChild("HumanoidRootPart") then return end
-    local color = accent()
-    local white = Color3.fromRGB(255, 255, 255)
+    local c1 = S.CompanionColor1
+    local c2 = S.CompanionColor2
+    local glow = itemGlow("Companion")
     local model = cosmeticRoot("HamerCompanion")
     CMP.model = model
-    local core = neonPart(model, Enum.PartType.Ball, Vector3.new(0.34, 0.34, 0.34), white, true)
+    local core = neonPart(model, Enum.PartType.Ball, Vector3.new(0.34, 0.34, 0.34), c2, glow)
     core.Transparency = 0.08
-    local light = Instance.new("PointLight")
-    light.Color = color
-    light.Range = 8
-    light.Brightness = 2
-    light.Parent = core
+    if glow then
+        local light = Instance.new("PointLight")
+        light.Color = c1
+        light.Range = 8
+        light.Brightness = 2
+        light.Parent = core
+    end
     local r1, r2, mini = {}, {}, {}
     for i = 1, 16 do
-        r1[i] = {p = neonPart(model, Enum.PartType.Ball, Vector3.new(0.075, 0.075, 0.075), color, true), a = (i - 1) / 16 * math.pi * 2}
-        r2[i] = {p = neonPart(model, Enum.PartType.Ball, Vector3.new(0.065, 0.065, 0.065), color:Lerp(white, 0.45), true), a = (i - 1) / 16 * math.pi * 2}
+        local a = (i - 1) / 16 * math.pi * 2
+        r1[i] = {p = neonPart(model, Enum.PartType.Ball, Vector3.new(0.075, 0.075, 0.075), gradColor(c1, c2, (math.sin(a) + 1) * 0.5), glow), a = a}
+        r2[i] = {p = neonPart(model, Enum.PartType.Ball, Vector3.new(0.065, 0.065, 0.065), gradColor(c2, c1, 0.35), glow), a = a}
     end
     for i = 1, 3 do
-        mini[i] = {p = neonPart(model, Enum.PartType.Ball, Vector3.new(0.11, 0.11, 0.11), color, true), a = i * math.pi * 2 / 3}
+        mini[i] = {p = neonPart(model, Enum.PartType.Ball, Vector3.new(0.11, 0.11, 0.11), c1, glow), a = i * math.pi * 2 / 3}
     end
     CMP.t, CMP.pos = 0, nil
     CMP.conn = RunService.RenderStepped:Connect(function(dt)
@@ -5199,10 +5380,10 @@ end
 local function deco(parent, shape, size, color, material, glow, transparency)
     local p = neonPart(parent, shape, size, color, glow)
     if material then
-        if glow and S.CosmeticGlow == false then
-            p.Material = Enum.Material.SmoothPlastic
-        else
+        if glow then
             p.Material = material
+        else
+            p.Material = Enum.Material.SmoothPlastic
         end
     end
     if transparency then p.Transparency = transparency end
@@ -5217,9 +5398,9 @@ local function applyAura()
     local char = LocalPlayer.Character
     local root = char and char:FindFirstChild("HumanoidRootPart")
     if not root then return end
-    local c = accent()
-    local c2 = c:Lerp(Color3.fromRGB(255, 255, 255), 0.55)
-    local white = Color3.fromRGB(255, 255, 255)
+    local c1 = S.AuraColor1
+    local c2 = S.AuraColor2
+    local glow = itemGlow("Aura")
     local model = cosmeticModel("HamerAura")
     Aura.model = model
     local vortex = {}
@@ -5228,28 +5409,31 @@ local function applyAura()
         local rad = 0.85 + (i % 7) / 6 * 1.35
         local baseY = 0.15 + (i * 0.37 % 1) * 1.9
         local s = 0.09 + (i * 0.13 % 1) * 0.1
-        local col = i % 3 == 0 and c2 or c:Lerp(white, (i % 5) / 5 * 0.45)
-        local p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), col, Enum.Material.Neon, true, 0.05 + (i % 4) * 0.035)
+        local col = gradColor(c2, c1, baseY / 2.05)
+        local p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), col, Enum.Material.Neon, glow, 0.05 + (i % 4) * 0.035)
         table.insert(vortex, {p = p, a = a, rad = rad, baseY = baseY, speed = 0.55 + (i % 5) * 0.19, amp = 0.1 + (i % 3) * 0.07, freq = 1.1 + (i % 4) * 0.32, size = s})
     end
     local halo = {}
     for i = 1, 32 do
         local s = 0.075 + (i % 4) * 0.012
-        local p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), i % 2 == 0 and c2 or c, Enum.Material.Neon, true, 0.04)
-        table.insert(halo, {p = p, a = (i - 1) / 32 * math.pi * 2, size = s})
+        local a = (i - 1) / 32 * math.pi * 2
+        local p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), gradColor(c1, c2, (math.sin(a) + 1) * 0.5), Enum.Material.Neon, glow, 0.04)
+        table.insert(halo, {p = p, a = a, size = s})
     end
     local embers = {}
     for i = 1, 12 do
         local s = 0.1 + (i % 3) * 0.03
-        local p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), i % 2 == 0 and c2 or c:Lerp(white, 0.3), Enum.Material.Neon, true, 0.02)
+        local p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), gradColor(c1, c2, (i % 5) / 5), Enum.Material.Neon, glow, 0.02)
         table.insert(embers, {p = p, a = i * 0.9, rad = 2.55 + (i % 4) * 0.12, y = 0.45 + (i % 5) * 0.34, speed = 0.8 + (i % 3) * 0.2, size = s})
     end
-    local core = deco(model, Enum.PartType.Ball, Vector3.new(0.38, 0.38, 0.38), c2, Enum.Material.Neon, true, 0.68)
-    local light = Instance.new("PointLight")
-    light.Color = c
-    light.Range = 9
-    light.Brightness = 1.8
-    light.Parent = core
+    local core = deco(model, Enum.PartType.Ball, Vector3.new(0.38, 0.38, 0.38), c2, Enum.Material.Neon, glow, 0.68)
+    if glow then
+        local light = Instance.new("PointLight")
+        light.Color = c1
+        light.Range = 9
+        light.Brightness = 1.8
+        light.Parent = core
+    end
     local t = 0
     Aura.conn = RunService.RenderStepped:Connect(function(dt)
         if not S.Aura or not model.Parent then return end
@@ -5287,36 +5471,38 @@ local function applyCrown()
     local char = LocalPlayer.Character
     local head = char and char:FindFirstChild("Head")
     if not head then return end
-    local gold = Color3.fromRGB(255, 205, 70)
-    local gold2 = Color3.fromRGB(255, 240, 170)
-    local gemColor = accent()
+    local c1 = S.CrownColor1
+    local c2 = S.CrownColor2
+    local glow = itemGlow("Crown")
     local model = cosmeticModel("HamerCrown")
     Crown.model = model
     local bands = {}
     for i = 1, 16 do
-        bands[i] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.12, 0.2, 0.3), i % 2 == 0 and gold2 or gold, Enum.Material.Neon, true, 0.02), a = (i - 1) / 16 * math.pi * 2}
+        bands[i] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.12, 0.2, 0.3), c1, Enum.Material.Neon, glow, 0.02), a = (i - 1) / 16 * math.pi * 2}
     end
     local trims = {}
     for i = 1, 16 do
-        trims[i] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.1, 0.07, 0.24), gemColor, Enum.Material.Neon, true, 0.12), a = (i - 1) / 16 * math.pi * 2}
+        trims[i] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.1, 0.07, 0.24), gradColor(c1, c2, 0.32), Enum.Material.Neon, glow, 0.12), a = (i - 1) / 16 * math.pi * 2}
     end
     local spikes = {}
     for i = 1, 8 do
         local a = (i - 1) / 8 * math.pi * 2
         spikes[i] = {
             a = a,
-            base = deco(model, Enum.PartType.Block, Vector3.new(0.2, 0.32, 0.16), gold, Enum.Material.Neon, true, 0.02),
-            mid = deco(model, Enum.PartType.Block, Vector3.new(0.13, 0.22, 0.12), gold2, Enum.Material.Neon, true, 0.02),
-            tip = deco(model, Enum.PartType.Ball, Vector3.new(0.1, 0.1, 0.1), i % 2 == 0 and gemColor or gold2, Enum.Material.Neon, true, 0.02)
+            base = deco(model, Enum.PartType.Block, Vector3.new(0.2, 0.32, 0.16), gradColor(c1, c2, 0.22), Enum.Material.Neon, glow, 0.02),
+            mid = deco(model, Enum.PartType.Block, Vector3.new(0.13, 0.22, 0.12), gradColor(c1, c2, 0.66), Enum.Material.Neon, glow, 0.02),
+            tip = deco(model, Enum.PartType.Ball, Vector3.new(0.1, 0.1, 0.1), c2, Enum.Material.Neon, glow, 0.02)
         }
     end
-    local bezel = deco(model, Enum.PartType.Cylinder, Vector3.new(0.08, 0.3, 0.3), gold2, Enum.Material.Neon, true, 0.02)
-    local gem = deco(model, Enum.PartType.Ball, Vector3.new(0.19, 0.19, 0.2), gemColor, Enum.Material.Neon, true, 0.02)
-    local light = Instance.new("PointLight")
-    light.Color = gemColor
-    light.Range = 6
-    light.Brightness = 2
-    light.Parent = gem
+    local bezel = deco(model, Enum.PartType.Cylinder, Vector3.new(0.08, 0.3, 0.3), c2, Enum.Material.Neon, glow, 0.02)
+    local gem = deco(model, Enum.PartType.Ball, Vector3.new(0.19, 0.19, 0.2), c2, Enum.Material.Neon, glow, 0.02)
+    if glow then
+        local light = Instance.new("PointLight")
+        light.Color = c2
+        light.Range = 6
+        light.Brightness = 2
+        light.Parent = gem
+    end
     local t = 0
     Crown.conn = RunService.RenderStepped:Connect(function(dt)
         if not S.Crown or not model.Parent then return end
@@ -5351,21 +5537,22 @@ local function applyHorns()
     local char = LocalPlayer.Character
     local head = char and char:FindFirstChild("Head")
     if not head then return end
-    local red = Color3.fromRGB(210, 36, 48)
-    local hot = Color3.fromRGB(255, 148, 76)
+    local c1 = S.HornsColor1
+    local c2 = S.HornsColor2
+    local glow = itemGlow("Horns")
     local model = cosmeticModel("HamerHorns")
     Horns.model = model
     local bases = {}
     local parts = {}
     for sign = -1, 1, 2 do
-        bases[sign] = deco(model, Enum.PartType.Ball, Vector3.new(0.3, 0.28, 0.3), Color3.fromRGB(34, 24, 28), Enum.Material.SmoothPlastic, true, 0.02)
+        bases[sign] = deco(model, Enum.PartType.Ball, Vector3.new(0.3, 0.28, 0.3), c1:Lerp(Color3.fromRGB(34, 24, 28), 0.72), Enum.Material.SmoothPlastic, glow, 0.02)
         for i = 1, 16 do
             local t = (i - 1) / 15
             local s = 0.27 * (1 - t * 0.68)
-            local p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), red:Lerp(hot, t), Enum.Material.Neon, true, 0.02)
-            if i == 16 then
+            local p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), gradColor(c1, c2, t), Enum.Material.Neon, glow, 0.02)
+            if i == 16 and glow then
                 local light = Instance.new("PointLight")
-                light.Color = hot
+                light.Color = c2
                 light.Range = 5
                 light.Brightness = 1.6
                 light.Parent = p
@@ -5407,20 +5594,21 @@ local function applyCatEars()
     local char = LocalPlayer.Character
     local head = char and char:FindFirstChild("Head")
     if not head then return end
-    local c = accent()
-    local pink = Color3.fromRGB(255, 168, 205)
+    local c1 = S.CatEarsColor1
+    local c2 = S.CatEarsColor2
+    local glow = itemGlow("CatEars")
     local model = cosmeticModel("HamerCatEars")
     CatEars.model = model
     local ears = {}
     for sign = -1, 1, 2 do
         ears[#ears + 1] = {
             sign = sign,
-            outer1 = deco(model, Enum.PartType.Block, Vector3.new(0.4, 0.24, 0.13), c, Enum.Material.Neon, true, 0.02),
-            outer2 = deco(model, Enum.PartType.Block, Vector3.new(0.28, 0.22, 0.12), c, Enum.Material.Neon, true, 0.02),
-            outer3 = deco(model, Enum.PartType.Block, Vector3.new(0.15, 0.18, 0.11), c, Enum.Material.Neon, true, 0.02),
-            inner1 = deco(model, Enum.PartType.Block, Vector3.new(0.26, 0.13, 0.05), pink, Enum.Material.Neon, true, 0.04),
-            inner2 = deco(model, Enum.PartType.Block, Vector3.new(0.15, 0.12, 0.05), pink, Enum.Material.Neon, true, 0.04),
-            tip = deco(model, Enum.PartType.Ball, Vector3.new(0.07, 0.07, 0.07), Color3.fromRGB(255, 255, 255), Enum.Material.Neon, true, 0.02)
+            outer1 = deco(model, Enum.PartType.Block, Vector3.new(0.4, 0.24, 0.13), c1, Enum.Material.Neon, glow, 0.02),
+            outer2 = deco(model, Enum.PartType.Block, Vector3.new(0.28, 0.22, 0.12), gradColor(c1, c2, 0.45), Enum.Material.Neon, glow, 0.02),
+            outer3 = deco(model, Enum.PartType.Block, Vector3.new(0.15, 0.18, 0.11), c2, Enum.Material.Neon, glow, 0.02),
+            inner1 = deco(model, Enum.PartType.Block, Vector3.new(0.26, 0.13, 0.05), gradColor(c1, c2, 0.6), Enum.Material.Neon, glow, 0.04),
+            inner2 = deco(model, Enum.PartType.Block, Vector3.new(0.15, 0.12, 0.05), c2, Enum.Material.Neon, glow, 0.04),
+            tip = deco(model, Enum.PartType.Ball, Vector3.new(0.07, 0.07, 0.07), c2, Enum.Material.Neon, glow, 0.02)
         }
     end
     local t = 0
@@ -5451,20 +5639,28 @@ local function applyJetpack()
     if not S.Jetpack then return end
     local char = LocalPlayer.Character
     if not char or not char:FindFirstChild("HumanoidRootPart") then return end
-    local c = accent()
-    local c2 = c:Lerp(Color3.fromRGB(255, 255, 255), 0.25)
+    local c1 = S.JetpackColor1
+    local c2 = S.JetpackColor2
+    local glow = itemGlow("Jetpack")
     local dark = Color3.fromRGB(42, 46, 56)
     local model = cosmeticModel("HamerJetpack")
     Jetpack.model = model
-    local body = deco(model, Enum.PartType.Block, Vector3.new(0.82, 1.0, 0.34), dark, Enum.Material.Metal, false, 0)
-    local plate = deco(model, Enum.PartType.Block, Vector3.new(0.62, 0.7, 0.05), Color3.fromRGB(24, 26, 33), Enum.Material.SmoothPlastic, false, 0)
-    local core = deco(model, Enum.PartType.Cylinder, Vector3.new(0.12, 0.34, 0.34), c, Enum.Material.Neon, true, 0.04)
+    local body = deco(model, Enum.PartType.Block, Vector3.new(0.82, 1.0, 0.34), c2:Lerp(dark, 0.72), Enum.Material.Metal, false, 0)
+    local plate = deco(model, Enum.PartType.Block, Vector3.new(0.62, 0.7, 0.05), c2:Lerp(dark, 0.88), Enum.Material.SmoothPlastic, false, 0)
+    local core = deco(model, Enum.PartType.Cylinder, Vector3.new(0.12, 0.34, 0.34), c1, Enum.Material.Neon, glow, 0.04)
+    if glow then
+        local light = Instance.new("PointLight")
+        light.Color = c1
+        light.Range = 6
+        light.Brightness = 1.6
+        light.Parent = core
+    end
     local tanks, nozzles, fins, flames = {}, {}, {}, {}
     for sign = -1, 1, 2 do
-        tanks[#tanks + 1] = {p = deco(model, Enum.PartType.Cylinder, Vector3.new(0.92, 0.3, 0.3), c2, Enum.Material.Neon, true, 0.04), sign = sign}
+        tanks[#tanks + 1] = {p = deco(model, Enum.PartType.Cylinder, Vector3.new(0.92, 0.3, 0.3), c2, Enum.Material.Neon, glow, 0.04), sign = sign}
         nozzles[#nozzles + 1] = {p = deco(model, Enum.PartType.Cylinder, Vector3.new(0.22, 0.25, 0.25), dark, Enum.Material.Metal, false, 0), sign = sign}
-        fins[#fins + 1] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.08, 0.5, 0.26), c, Enum.Material.Neon, true, 0.08), sign = sign}
-        flames[#flames + 1] = {p = deco(model, Enum.PartType.Ball, Vector3.new(0.24, 0.62, 0.24), Color3.fromRGB(255, 145, 45), Enum.Material.Neon, true, 0.32), sign = sign}
+        fins[#fins + 1] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.08, 0.5, 0.26), gradColor(c1, c2, 0.3), Enum.Material.Neon, glow, 0.08), sign = sign}
+        flames[#flames + 1] = {p = deco(model, Enum.PartType.Ball, Vector3.new(0.24, 0.62, 0.24), c1:Lerp(Color3.fromRGB(255, 145, 45), 0.38), Enum.Material.Neon, glow, 0.32), sign = sign}
     end
     local t = 0
     Jetpack.conn = RunService.RenderStepped:Connect(function(dt)
@@ -5503,18 +5699,19 @@ local function applyTail()
     if not S.Tail then return end
     local char = LocalPlayer.Character
     if not char or not char:FindFirstChild("HumanoidRootPart") then return end
-    local c = accent()
-    local white = Color3.fromRGB(255, 255, 255)
+    local c1 = S.TailColor1
+    local c2 = S.TailColor2
+    local glow = itemGlow("Tail")
     local model = cosmeticModel("HamerTail")
     Tail.model = model
     local parts = {}
     for i = 1, 26 do
         local f = (i - 1) / 25
         local s = 0.27 * (1 - f * 0.66)
-        local p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), c:Lerp(white, f * 0.75), Enum.Material.Neon, true, 0.02)
-        if i == 26 then
+        local p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), gradColor(c1, c2, f), Enum.Material.Neon, glow, 0.02)
+        if i == 26 and glow then
             local light = Instance.new("PointLight")
-            light.Color = c
+            light.Color = c2
             light.Range = 5
             light.Brightness = 1.6
             light.Parent = p
@@ -5550,21 +5747,24 @@ local function applyTopHat()
     local head = char and char:FindFirstChild("Head")
     if not head then return end
     local dark = Color3.fromRGB(22, 23, 28)
-    local c = accent()
+    local c1 = S.TopHatColor1
+    local c2 = S.TopHatColor2
+    local glow = itemGlow("TopHat")
+    local body = c1:Lerp(dark, 0.82)
     local model = cosmeticModel("HamerTopHat")
     TopHat.model = model
-    local brim = deco(model, Enum.PartType.Cylinder, Vector3.new(0.07, 1.72, 1.72), dark, Enum.Material.SmoothPlastic, false, 0)
-    local top = deco(model, Enum.PartType.Cylinder, Vector3.new(1.1, 1.02, 1.02), dark, Enum.Material.SmoothPlastic, false, 0)
-    local band = deco(model, Enum.PartType.Cylinder, Vector3.new(0.22, 1.06, 1.06), c, Enum.Material.Neon, true, 0.04)
-    local rim = deco(model, Enum.PartType.Cylinder, Vector3.new(0.05, 1.05, 1.05), c, Enum.Material.Neon, true, 0.1)
-    local buckle = deco(model, Enum.PartType.Block, Vector3.new(0.2, 0.16, 0.06), Color3.fromRGB(255, 220, 120), Enum.Material.Neon, true, 0.02)
+    local brim = deco(model, Enum.PartType.Cylinder, Vector3.new(0.07, 1.72, 1.72), body, Enum.Material.SmoothPlastic, false, 0)
+    local top = deco(model, Enum.PartType.Cylinder, Vector3.new(1.1, 1.02, 1.02), body, Enum.Material.SmoothPlastic, false, 0)
+    local band = deco(model, Enum.PartType.Cylinder, Vector3.new(0.22, 1.06, 1.06), c1, Enum.Material.Neon, glow, 0.04)
+    local rim = deco(model, Enum.PartType.Cylinder, Vector3.new(0.05, 1.05, 1.05), gradColor(c1, c2, 0.35), Enum.Material.Neon, glow, 0.1)
+    local buckle = deco(model, Enum.PartType.Block, Vector3.new(0.2, 0.16, 0.06), c2, Enum.Material.Neon, glow, 0.02)
     local petals = {}
     for i = 1, 5 do
         local a = (i - 1) / 5 * math.pi * 2
-        petals[i] = deco(model, Enum.PartType.Ball, Vector3.new(0.12, 0.09, 0.12), Color3.fromRGB(255, 70, 110), Enum.Material.Neon, true, 0.02)
+        petals[i] = deco(model, Enum.PartType.Ball, Vector3.new(0.12, 0.09, 0.12), c2, Enum.Material.Neon, glow, 0.02)
         petals[i]:SetAttribute("a", a)
     end
-    local rose = deco(model, Enum.PartType.Ball, Vector3.new(0.1, 0.08, 0.1), Color3.fromRGB(255, 210, 230), Enum.Material.Neon, true, 0.02)
+    local rose = deco(model, Enum.PartType.Ball, Vector3.new(0.1, 0.08, 0.1), c2:Lerp(Color3.fromRGB(255, 255, 255), 0.42), Enum.Material.Neon, glow, 0.02)
     local t = 0
     TopHat.conn = RunService.RenderStepped:Connect(function(dt)
         if not S.TopHat or not model.Parent then return end
@@ -5595,22 +5795,23 @@ local function applyVisor()
     local char = LocalPlayer.Character
     local head = char and char:FindFirstChild("Head")
     if not head then return end
-    local c = accent()
-    local white = Color3.fromRGB(255, 255, 255)
+    local c1 = S.VisorColor1
+    local c2 = S.VisorColor2
+    local glow = itemGlow("Visor")
     local model = cosmeticModel("HamerVisor")
     Visor.model = model
-    local bar = deco(model, Enum.PartType.Block, Vector3.new(0.72, 0.16, 0.07), c, Enum.Material.Neon, true, 0.03)
-    local lens = deco(model, Enum.PartType.Block, Vector3.new(0.62, 0.1, 0.04), white, Enum.Material.Neon, true, 0.28)
+    local bar = deco(model, Enum.PartType.Block, Vector3.new(0.72, 0.16, 0.07), c1, Enum.Material.Neon, glow, 0.03)
+    local lens = deco(model, Enum.PartType.Block, Vector3.new(0.62, 0.1, 0.04), c2, Enum.Material.Neon, glow, 0.28)
     local sides = {}
     for sign = -1, 1, 2 do
         sides[#sides + 1] = {
             sign = sign,
-            frame = deco(model, Enum.PartType.Block, Vector3.new(0.3, 0.16, 0.06), c, Enum.Material.Neon, true, 0.03),
-            lens = deco(model, Enum.PartType.Block, Vector3.new(0.26, 0.1, 0.035), white, Enum.Material.Neon, true, 0.32),
-            pod = deco(model, Enum.PartType.Ball, Vector3.new(0.14, 0.14, 0.14), c, Enum.Material.Neon, true, 0.02)
+            frame = deco(model, Enum.PartType.Block, Vector3.new(0.3, 0.16, 0.06), c1, Enum.Material.Neon, glow, 0.03),
+            lens = deco(model, Enum.PartType.Block, Vector3.new(0.26, 0.1, 0.035), c2, Enum.Material.Neon, glow, 0.32),
+            pod = deco(model, Enum.PartType.Ball, Vector3.new(0.14, 0.14, 0.14), gradColor(c1, c2, 0.4), Enum.Material.Neon, glow, 0.02)
         }
     end
-    local scan = deco(model, Enum.PartType.Block, Vector3.new(0.1, 0.06, 0.02), white, Enum.Material.Neon, true, 0.02)
+    local scan = deco(model, Enum.PartType.Block, Vector3.new(0.1, 0.06, 0.02), c2, Enum.Material.Neon, glow, 0.02)
     local t = 0
     Visor.conn = RunService.RenderStepped:Connect(function(dt)
         if not S.Visor or not model.Parent then return end
@@ -5642,23 +5843,31 @@ local function applyOniMask()
     local char = LocalPlayer.Character
     local head = char and char:FindFirstChild("Head")
     if not head then return end
-    local c = accent()
-    local red = Color3.fromRGB(168, 26, 40)
+    local c1 = S.OniMaskColor1
+    local c2 = S.OniMaskColor2
+    local glow = itemGlow("OniMask")
     local dark = Color3.fromRGB(28, 14, 18)
     local white = Color3.fromRGB(255, 236, 214)
     local model = cosmeticModel("HamerOniMask")
     OniMask.model = model
-    local face = deco(model, Enum.PartType.Block, Vector3.new(1.02, 0.86, 0.16), red, Enum.Material.SmoothPlastic, false, 0)
+    local face = deco(model, Enum.PartType.Block, Vector3.new(1.02, 0.86, 0.16), c1:Lerp(dark, 0.12), Enum.Material.SmoothPlastic, false, 0)
     local mouth = deco(model, Enum.PartType.Block, Vector3.new(0.46, 0.11, 0.08), dark, Enum.Material.SmoothPlastic, false, 0)
     local eyes, brows, fangs, horns = {}, {}, {}, {}
     for sign = -1, 1, 2 do
-        eyes[#eyes + 1] = {p = deco(model, Enum.PartType.Ball, Vector3.new(0.17, 0.1, 0.06), c, Enum.Material.Neon, true, 0.03), sign = sign}
+        eyes[#eyes + 1] = {p = deco(model, Enum.PartType.Ball, Vector3.new(0.17, 0.1, 0.06), c2, Enum.Material.Neon, glow, 0.03), sign = sign}
         brows[#brows + 1] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.38, 0.1, 0.08), dark, Enum.Material.SmoothPlastic, false, 0), sign = sign}
-        fangs[#fangs + 1] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.09, 0.22, 0.07), white, Enum.Material.SmoothPlastic, false, 0), sign = sign}
+        fangs[#fangs + 1] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.09, 0.22, 0.07), c2:Lerp(white, 0.72), Enum.Material.SmoothPlastic, false, 0), sign = sign}
         for i = 1, 3 do
             local s = 0.17 - i * 0.03
-            horns[#horns + 1] = {p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), i == 3 and c or red:Lerp(c, i * 0.18), Enum.Material.Neon, true, 0.02), sign = sign, i = i}
+            horns[#horns + 1] = {p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), gradColor(c1, c2, 0.2 + i * 0.3), Enum.Material.Neon, glow, 0.02), sign = sign, i = i}
         end
+    end
+    if glow then
+        local light = Instance.new("PointLight")
+        light.Color = c2
+        light.Range = 5
+        light.Brightness = 1.4
+        light.Parent = face
     end
     local t = 0
     OniMask.conn = RunService.RenderStepped:Connect(function(dt)
@@ -5695,23 +5904,34 @@ local function applyGasMask()
     local char = LocalPlayer.Character
     local head = char and char:FindFirstChild("Head")
     if not head then return end
-    local c = accent()
+    local c1 = S.GasMaskColor1
+    local c2 = S.GasMaskColor2
+    local glow = itemGlow("GasMask")
     local dark = Color3.fromRGB(34, 38, 46)
     local metal = Color3.fromRGB(64, 70, 82)
+    local body = c2:Lerp(dark, 0.62)
+    local trim = c2:Lerp(metal, 0.58)
     local model = cosmeticModel("HamerGasMask")
     GasMask.model = model
-    local face = deco(model, Enum.PartType.Block, Vector3.new(1.04, 0.84, 0.2), dark, Enum.Material.Metal, false, 0)
-    local rim = deco(model, Enum.PartType.Block, Vector3.new(0.92, 0.42, 0.06), metal, Enum.Material.Metal, false, 0)
-    local lens = deco(model, Enum.PartType.Block, Vector3.new(0.78, 0.28, 0.05), c, Enum.Material.Neon, true, 0.15)
+    local face = deco(model, Enum.PartType.Block, Vector3.new(1.04, 0.84, 0.2), body, Enum.Material.Metal, false, 0)
+    local rim = deco(model, Enum.PartType.Block, Vector3.new(0.92, 0.42, 0.06), trim, Enum.Material.Metal, false, 0)
+    local lens = deco(model, Enum.PartType.Block, Vector3.new(0.78, 0.28, 0.05), c1, Enum.Material.Neon, glow, 0.15)
     local filters = {}
     for sign = -1, 1, 2 do
-        local f = {p = deco(model, Enum.PartType.Cylinder, Vector3.new(0.36, 0.32, 0.32), metal, Enum.Material.Metal, false, 0), sign = sign, hose = {}}
-        f.cap = deco(model, Enum.PartType.Ball, Vector3.new(0.13, 0.13, 0.13), c, Enum.Material.Neon, true, 0.04)
+        local f = {p = deco(model, Enum.PartType.Cylinder, Vector3.new(0.36, 0.32, 0.32), trim, Enum.Material.Metal, false, 0), sign = sign, hose = {}}
+        f.cap = deco(model, Enum.PartType.Ball, Vector3.new(0.13, 0.13, 0.13), c1, Enum.Material.Neon, glow, 0.04)
         for i = 1, 4 do
             local s = 0.1 - i * 0.012
-            f.hose[i] = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), dark, Enum.Material.SmoothPlastic, false, 0)
+            f.hose[i] = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), body:Lerp(dark, 0.5), Enum.Material.SmoothPlastic, false, 0)
         end
         filters[#filters + 1] = f
+    end
+    if glow then
+        local light = Instance.new("PointLight")
+        light.Color = c1
+        light.Range = 5
+        light.Brightness = 1.2
+        light.Parent = lens
     end
     local t = 0
     GasMask.conn = RunService.RenderStepped:Connect(function(dt)
@@ -5743,21 +5963,22 @@ local function applyNeonMask()
     local char = LocalPlayer.Character
     local head = char and char:FindFirstChild("Head")
     if not head then return end
-    local c = accent()
+    local c1 = S.NeonMaskColor1
+    local c2 = S.NeonMaskColor2
+    local glow = itemGlow("NeonMask")
     local dark = Color3.fromRGB(22, 24, 32)
-    local white = Color3.fromRGB(255, 255, 255)
     local model = cosmeticModel("HamerNeonMask")
     NeonMask.model = model
-    local face = deco(model, Enum.PartType.Block, Vector3.new(1.0, 0.78, 0.12), dark, Enum.Material.SmoothPlastic, false, 0)
-    local visor = deco(model, Enum.PartType.Block, Vector3.new(0.84, 0.18, 0.05), c, Enum.Material.Neon, true, 0.04)
-    local scan = deco(model, Enum.PartType.Block, Vector3.new(0.12, 0.04, 0.02), white, Enum.Material.Neon, true, 0.02)
+    local face = deco(model, Enum.PartType.Block, Vector3.new(1.0, 0.78, 0.12), c2:Lerp(dark, 0.78), Enum.Material.SmoothPlastic, false, 0)
+    local visor = deco(model, Enum.PartType.Block, Vector3.new(0.84, 0.18, 0.05), c1, Enum.Material.Neon, glow, 0.04)
+    local scan = deco(model, Enum.PartType.Block, Vector3.new(0.12, 0.04, 0.02), c2, Enum.Material.Neon, glow, 0.02)
     local rails = {}
     for sign = -1, 1, 2 do
-        rails[#rails + 1] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.06, 0.62, 0.06), c, Enum.Material.Neon, true, 0.08), sign = sign}
+        rails[#rails + 1] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.06, 0.62, 0.06), c1, Enum.Material.Neon, glow, 0.08), sign = sign}
     end
     local grill = {}
     for i = 1, 5 do
-        grill[i] = deco(model, Enum.PartType.Block, Vector3.new(0.09, 0.09, 0.04), i % 2 == 0 and white or c, Enum.Material.Neon, true, 0.04)
+        grill[i] = deco(model, Enum.PartType.Block, Vector3.new(0.09, 0.09, 0.04), gradColor(c1, c2, (i - 1) / 4), Enum.Material.Neon, glow, 0.04)
     end
     local t = 0
     NeonMask.conn = RunService.RenderStepped:Connect(function(dt)
@@ -5788,15 +6009,16 @@ local function applyCap()
     local char = LocalPlayer.Character
     local head = char and char:FindFirstChild("Head")
     if not head then return end
-    local c = accent()
+    local c1 = S.CapColor1
+    local c2 = S.CapColor2
+    local glow = itemGlow("Cap")
     local dark = Color3.fromRGB(28, 30, 38)
-    local white = Color3.fromRGB(255, 255, 255)
     local model = cosmeticModel("HamerCap")
     Cap.model = model
-    local dome = deco(model, Enum.PartType.Ball, Vector3.new(1.08, 0.56, 1.08), dark, Enum.Material.SmoothPlastic, false, 0)
-    local brim = deco(model, Enum.PartType.Block, Vector3.new(1.02, 0.08, 0.62), c, Enum.Material.Neon, true, 0.02)
-    local button = deco(model, Enum.PartType.Ball, Vector3.new(0.14, 0.14, 0.14), c, Enum.Material.Neon, true, 0.02)
-    local logo = deco(model, Enum.PartType.Block, Vector3.new(0.24, 0.1, 0.04), white, Enum.Material.Neon, true, 0.02)
+    local dome = deco(model, Enum.PartType.Ball, Vector3.new(1.08, 0.56, 1.08), c1:Lerp(dark, 0.82), Enum.Material.SmoothPlastic, false, 0)
+    local brim = deco(model, Enum.PartType.Block, Vector3.new(1.02, 0.08, 0.62), c1, Enum.Material.Neon, glow, 0.02)
+    local button = deco(model, Enum.PartType.Ball, Vector3.new(0.14, 0.14, 0.14), c2, Enum.Material.Neon, glow, 0.02)
+    local logo = deco(model, Enum.PartType.Block, Vector3.new(0.24, 0.1, 0.04), c2, Enum.Material.Neon, glow, 0.02)
     local t = 0
     Cap.conn = RunService.RenderStepped:Connect(function(dt)
         if not S.Cap or not model.Parent then return end
@@ -5820,30 +6042,35 @@ local function applyCyberPack()
     local char = LocalPlayer.Character
     local root = char and char:FindFirstChild("HumanoidRootPart")
     if not root then return end
-    local c = accent()
+    local c1 = S.CyberPackColor1
+    local c2 = S.CyberPackColor2
+    local glow = itemGlow("CyberPack")
     local dark = Color3.fromRGB(34, 38, 48)
     local dark2 = Color3.fromRGB(22, 24, 31)
     local model = cosmeticModel("HamerCyberPack")
     CyberPack.model = model
-    local body = deco(model, Enum.PartType.Block, Vector3.new(0.86, 1.0, 0.34), dark, Enum.Material.Metal, false, 0)
-    local panel = deco(model, Enum.PartType.Block, Vector3.new(0.64, 0.74, 0.05), dark2, Enum.Material.SmoothPlastic, false, 0)
-    local core = deco(model, Enum.PartType.Ball, Vector3.new(0.24, 0.24, 0.24), c, Enum.Material.Neon, true, 0.02)
-    local antenna = deco(model, Enum.PartType.Block, Vector3.new(0.05, 0.5, 0.05), dark, Enum.Material.Metal, false, 0)
-    local tip = deco(model, Enum.PartType.Ball, Vector3.new(0.09, 0.09, 0.09), c, Enum.Material.Neon, true, 0.02)
+    local body = deco(model, Enum.PartType.Block, Vector3.new(0.86, 1.0, 0.34), c2:Lerp(dark, 0.78), Enum.Material.Metal, false, 0)
+    local panel = deco(model, Enum.PartType.Block, Vector3.new(0.64, 0.74, 0.05), c2:Lerp(dark2, 0.9), Enum.Material.SmoothPlastic, false, 0)
+    local core = deco(model, Enum.PartType.Ball, Vector3.new(0.24, 0.24, 0.24), c1, Enum.Material.Neon, glow, 0.02)
+    local antenna = deco(model, Enum.PartType.Block, Vector3.new(0.05, 0.5, 0.05), c2:Lerp(dark, 0.75), Enum.Material.Metal, false, 0)
+    local tip = deco(model, Enum.PartType.Ball, Vector3.new(0.09, 0.09, 0.09), c2, Enum.Material.Neon, glow, 0.02)
     local pods = {}
     for sign = -1, 1, 2 do
-        pods[#pods + 1] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.16, 0.6, 0.2), c, Enum.Material.Neon, true, 0.12), sign = sign}
+        pods[#pods + 1] = {p = deco(model, Enum.PartType.Block, Vector3.new(0.16, 0.6, 0.2), gradColor(c1, c2, 0.42), Enum.Material.Neon, glow, 0.12), sign = sign}
     end
     local ring = {}
     for i = 1, 12 do
         local s = 0.07
-        ring[i] = {p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), i % 2 == 0 and c or dark2, Enum.Material.Neon, true, 0.02), a = (i - 1) / 12 * math.pi * 2}
+        local a = (i - 1) / 12 * math.pi * 2
+        ring[i] = {p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), gradColor(c1, c2, (math.sin(a) + 1) * 0.5), Enum.Material.Neon, glow, 0.02), a = a}
     end
-    local light = Instance.new("PointLight")
-    light.Color = c
-    light.Range = 7
-    light.Brightness = 1.8
-    light.Parent = core
+    if glow then
+        local light = Instance.new("PointLight")
+        light.Color = c1
+        light.Range = 7
+        light.Brightness = 1.8
+        light.Parent = core
+    end
     local t = 0
     CyberPack.conn = RunService.RenderStepped:Connect(function(dt)
         if not S.CyberPack or not model.Parent then return end
@@ -5877,34 +6104,37 @@ local function applyAngelPack()
     local char = LocalPlayer.Character
     local root = char and char:FindFirstChild("HumanoidRootPart")
     if not root then return end
-    local c = accent()
-    local white = Color3.fromRGB(255, 252, 240)
-    local gold = Color3.fromRGB(255, 210, 110)
+    local c1 = S.AngelPackColor1
+    local c2 = S.AngelPackColor2
+    local glow = itemGlow("AngelPack")
     local model = cosmeticModel("HamerAngelPack")
     AngelPack.model = model
-    local body = deco(model, Enum.PartType.Block, Vector3.new(0.58, 0.78, 0.26), white, Enum.Material.SmoothPlastic, false, 0)
-    local trim = deco(model, Enum.PartType.Block, Vector3.new(0.44, 0.08, 0.06), gold, Enum.Material.Neon, true, 0.04)
-    local core = deco(model, Enum.PartType.Ball, Vector3.new(0.2, 0.2, 0.2), c, Enum.Material.Neon, true, 0.02)
+    local body = deco(model, Enum.PartType.Block, Vector3.new(0.58, 0.78, 0.26), c1, Enum.Material.SmoothPlastic, false, 0)
+    local trim = deco(model, Enum.PartType.Block, Vector3.new(0.44, 0.08, 0.06), c2, Enum.Material.Neon, glow, 0.04)
+    local core = deco(model, Enum.PartType.Ball, Vector3.new(0.2, 0.2, 0.2), c1:Lerp(c2, 0.35), Enum.Material.Neon, glow, 0.02)
     local halo = {}
     for i = 1, 18 do
         local s = 0.06
-        halo[i] = {p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), i % 2 == 0 and gold or white, Enum.Material.Neon, true, 0.02), a = (i - 1) / 18 * math.pi * 2}
+        local a = (i - 1) / 18 * math.pi * 2
+        halo[i] = {p = deco(model, Enum.PartType.Ball, Vector3.new(s, s, s), gradColor(c1, c2, (math.sin(a) + 1) * 0.5), Enum.Material.Neon, glow, 0.02), a = a}
     end
     local wings = {}
     for sign = -1, 1, 2 do
         for i = 1, 4 do
             local len = 0.7 - i * 0.07
             wings[#wings + 1] = {
-                p = deco(model, Enum.PartType.Block, Vector3.new(0.13, len, 0.07), i % 2 == 0 and gold or white, Enum.Material.Neon, true, 0.03),
+                p = deco(model, Enum.PartType.Block, Vector3.new(0.13, len, 0.07), gradColor(c1, c2, 0.22 + i * 0.2), Enum.Material.Neon, glow, 0.03),
                 sign = sign, i = i, len = len
             }
         end
     end
-    local light = Instance.new("PointLight")
-    light.Color = c
-    light.Range = 8
-    light.Brightness = 1.7
-    light.Parent = core
+    if glow then
+        local light = Instance.new("PointLight")
+        light.Color = c1:Lerp(c2, 0.45)
+        light.Range = 8
+        light.Brightness = 1.7
+        light.Parent = core
+    end
     local t = 0
     AngelPack.conn = RunService.RenderStepped:Connect(function(dt)
         if not S.AngelPack or not model.Parent then return end
@@ -5935,19 +6165,21 @@ local function applyScythe()
     if not S.Scythe then return end
     local char = LocalPlayer.Character
     if not char or not char:FindFirstChild("HumanoidRootPart") then return end
-    local c = accent()
+    local c1 = S.ScytheColor1
+    local c2 = S.ScytheColor2
+    local glow = itemGlow("Scythe")
     local dark = Color3.fromRGB(56, 60, 72)
     local dark2 = Color3.fromRGB(32, 34, 42)
     local model = cosmeticModel("HamerScythe")
     Scythe.model = model
-    local shaft = deco(model, Enum.PartType.Cylinder, Vector3.new(5.6, 0.13, 0.13), dark2, Enum.Material.Metal, false, 0)
-    local collar = deco(model, Enum.PartType.Cylinder, Vector3.new(0.36, 0.33, 0.33), dark, Enum.Material.Metal, false, 0)
-    local grip = deco(model, Enum.PartType.Cylinder, Vector3.new(1.35, 0.2, 0.2), Color3.fromRGB(96, 34, 42), Enum.Material.SmoothPlastic, false, 0)
-    local pommel = deco(model, Enum.PartType.Ball, Vector3.new(0.28, 0.28, 0.28), c, Enum.Material.Neon, true, 0.02)
-    local gem = deco(model, Enum.PartType.Ball, Vector3.new(0.17, 0.17, 0.17), c, Enum.Material.Neon, true, 0.02)
+    local shaft = deco(model, Enum.PartType.Cylinder, Vector3.new(5.6, 0.13, 0.13), c2:Lerp(dark2, 0.8), Enum.Material.Metal, false, 0)
+    local collar = deco(model, Enum.PartType.Cylinder, Vector3.new(0.36, 0.33, 0.33), c2:Lerp(dark, 0.65), Enum.Material.Metal, false, 0)
+    local grip = deco(model, Enum.PartType.Cylinder, Vector3.new(1.35, 0.2, 0.2), c2, Enum.Material.SmoothPlastic, false, 0)
+    local pommel = deco(model, Enum.PartType.Ball, Vector3.new(0.28, 0.28, 0.28), c1, Enum.Material.Neon, glow, 0.02)
+    local gem = deco(model, Enum.PartType.Ball, Vector3.new(0.17, 0.17, 0.17), c1, Enum.Material.Neon, glow, 0.02)
     local gripRings = {}
     for i = 1, 4 do
-        gripRings[i] = deco(model, Enum.PartType.Cylinder, Vector3.new(0.07, 0.24, 0.24), c, Enum.Material.Neon, true, 0.08)
+        gripRings[i] = deco(model, Enum.PartType.Cylinder, Vector3.new(0.07, 0.24, 0.24), gradColor(c2, c1, 0.35 + i * 0.1), Enum.Material.Neon, glow, 0.08)
     end
     local blade = {}
     for i = 1, 12 do
@@ -5956,14 +6188,16 @@ local function applyScythe()
         local y = 0.12 + math.sin(t * math.pi) * 0.72 + t * 0.06
         local ang = math.rad(-18 + t * 100)
         local body = deco(model, Enum.PartType.Block, Vector3.new(0.58, 0.2 - t * 0.06, 0.11), dark, Enum.Material.Metal, false, 0)
-        local edge = deco(model, Enum.PartType.Block, Vector3.new(0.56, 0.055, 0.12), c, Enum.Material.Neon, true, 0.02)
+        local edge = deco(model, Enum.PartType.Block, Vector3.new(0.56, 0.055, 0.12), gradColor(c1, c2, 0.12 + t * 0.55), Enum.Material.Neon, glow, 0.02)
         blade[i] = {p = body, e = edge, off = CFrame.new(x, y, 0) * CFrame.Angles(0, 0, ang)}
     end
-    local light = Instance.new("PointLight")
-    light.Color = c
-    light.Range = 7
-    light.Brightness = 2
-    light.Parent = gem
+    if glow then
+        local light = Instance.new("PointLight")
+        light.Color = c1
+        light.Range = 7
+        light.Brightness = 2
+        light.Parent = gem
+    end
     local t = 0
     Scythe.conn = RunService.RenderStepped:Connect(function(dt)
         if not S.Scythe or not model.Parent then return end
@@ -6290,19 +6524,14 @@ end
 local function serialize()
     local t = {}
     for k, v in pairs(S) do
-        if (type(v) == "boolean" or type(v) == "number" or type(v) == "string") and k ~= "MenuOpen" and k ~= "DroneActive" then
-            t[k] = v
+        if k ~= "MenuOpen" and k ~= "DroneActive" then
+            if typeof(v) == "Color3" then
+                t[k] = {math.floor(v.R * 255), math.floor(v.G * 255), math.floor(v.B * 255)}
+            elseif type(v) == "boolean" or type(v) == "number" or type(v) == "string" then
+                t[k] = v
+            end
         end
     end
-    t.ESPColor = {math.floor(S.ESPColor.R * 255), math.floor(S.ESPColor.G * 255), math.floor(S.ESPColor.B * 255)}
-    t.ESPMurdererColor = {math.floor(S.ESPMurdererColor.R * 255), math.floor(S.ESPMurdererColor.G * 255), math.floor(S.ESPMurdererColor.B * 255)}
-    t.ESPSheriffColor = {math.floor(S.ESPSheriffColor.R * 255), math.floor(S.ESPSheriffColor.G * 255), math.floor(S.ESPSheriffColor.B * 255)}
-    t.ESPHeroColor = {math.floor(S.ESPHeroColor.R * 255), math.floor(S.ESPHeroColor.G * 255), math.floor(S.ESPHeroColor.B * 255)}
-    t.ESPInnocentColor = {math.floor(S.ESPInnocentColor.R * 255), math.floor(S.ESPInnocentColor.G * 255), math.floor(S.ESPInnocentColor.B * 255)}
-    t.DongColor = {math.floor(S.DongColor.R * 255), math.floor(S.DongColor.G * 255), math.floor(S.DongColor.B * 255)}
-    t.DongHeadColor = {math.floor(S.DongHeadColor.R * 255), math.floor(S.DongHeadColor.G * 255), math.floor(S.DongHeadColor.B * 255)}
-    t.FlickTracerColor = {math.floor(S.FlickTracerColor.R * 255), math.floor(S.FlickTracerColor.G * 255), math.floor(S.FlickTracerColor.B * 255)}
-    t.ESPItemColor = {math.floor(S.ESPItemColor.R * 255), math.floor(S.ESPItemColor.G * 255), math.floor(S.ESPItemColor.B * 255)}
     t.Keybinds = S.Keybinds
     t._version = CONFIG_VERSION
     t._savedAt = os.time and os.time() or 0
@@ -6369,36 +6598,18 @@ local function applyDecoded(decoded)
     if type(decoded) ~= "table" then return false, 0 end
     local version = tonumber(decoded._version) or 1
     for k, v in pairs(decoded) do
-        if type(k) == "string" and string.sub(k, 1, 1) ~= "_" and S[k] ~= nil and typeof(S[k]) ~= "Color3" then
-            if type(S[k]) == type(v) then S[k] = v end
+        local cur = S[k]
+        if type(k) == "string" and string.sub(k, 1, 1) ~= "_" and cur ~= nil then
+            if typeof(cur) == "Color3" and type(v) == "table" then
+                S[k] = Color3.fromRGB(
+                    tonumber(v[1]) or math.floor(cur.R * 255),
+                    tonumber(v[2]) or math.floor(cur.G * 255),
+                    tonumber(v[3]) or math.floor(cur.B * 255)
+                )
+            elseif typeof(cur) ~= "Color3" and type(cur) == type(v) then
+                S[k] = v
+            end
         end
-    end
-    if type(decoded.ESPColor) == "table" then
-        S.ESPColor = Color3.fromRGB(decoded.ESPColor[1] or 0, decoded.ESPColor[2] or 229, decoded.ESPColor[3] or 255)
-    end
-    if type(decoded.ESPMurdererColor) == "table" then
-        S.ESPMurdererColor = Color3.fromRGB(decoded.ESPMurdererColor[1] or 255, decoded.ESPMurdererColor[2] or 64, decoded.ESPMurdererColor[3] or 64)
-    end
-    if type(decoded.ESPSheriffColor) == "table" then
-        S.ESPSheriffColor = Color3.fromRGB(decoded.ESPSheriffColor[1] or 80, decoded.ESPSheriffColor[2] or 150, decoded.ESPSheriffColor[3] or 255)
-    end
-    if type(decoded.ESPHeroColor) == "table" then
-        S.ESPHeroColor = Color3.fromRGB(decoded.ESPHeroColor[1] or 255, decoded.ESPHeroColor[2] or 210, decoded.ESPHeroColor[3] or 60)
-    end
-    if type(decoded.ESPInnocentColor) == "table" then
-        S.ESPInnocentColor = Color3.fromRGB(decoded.ESPInnocentColor[1] or 90, decoded.ESPInnocentColor[2] or 230, decoded.ESPInnocentColor[3] or 130)
-    end
-    if type(decoded.DongColor) == "table" then
-        S.DongColor = Color3.fromRGB(decoded.DongColor[1] or 232, decoded.DongColor[2] or 190, decoded.DongColor[3] or 158)
-    end
-    if type(decoded.DongHeadColor) == "table" then
-        S.DongHeadColor = Color3.fromRGB(decoded.DongHeadColor[1] or 200, decoded.DongHeadColor[2] or 60, decoded.DongHeadColor[3] or 60)
-    end
-    if type(decoded.FlickTracerColor) == "table" then
-        S.FlickTracerColor = Color3.fromRGB(decoded.FlickTracerColor[1] or 178, decoded.FlickTracerColor[2] or 112, decoded.FlickTracerColor[3] or 255)
-    end
-    if type(decoded.ESPItemColor) == "table" then
-        S.ESPItemColor = Color3.fromRGB(decoded.ESPItemColor[1] or 255, decoded.ESPItemColor[2] or 210, decoded.ESPItemColor[3] or 60)
     end
     if type(decoded.Keybinds) == "table" then
         local binds = {}
@@ -6577,38 +6788,86 @@ builders.cosmetics = function()
             selectTab("cosmetics")
         end)
     end
+    local function cosmeticSettings(item, apply, c1Label, c2Label)
+        colorRow(c1Label or "Main color", item .. "Color1", apply)
+        colorRow(c2Label or "Accent color", item .. "Color2", apply)
+        toggleRow("Glow", item .. "Glow", apply)
+    end
     local function hats()
-        moduleRow("Crown", "Crown", nil, Cosmetics.Cos.applyCrown)
-        moduleRow("Cap", "Cap", nil, Cosmetics.Cos.applyCap)
-        moduleRow("Top hat", "TopHat", nil, Cosmetics.Cos.applyTopHat)
-        moduleRow("China hat", "ChinaHat", nil, Cosmetics.applyChinaHat)
-        moduleRow("Cat ears", "CatEars", nil, Cosmetics.Cos.applyCatEars)
-        moduleRow("Demon horns", "Horns", nil, Cosmetics.Cos.applyHorns)
+        moduleRow("Crown", "Crown", function()
+            cosmeticSettings("Crown", Cosmetics.Cos.applyCrown, "Gold color", "Gem color")
+        end, Cosmetics.Cos.applyCrown)
+        moduleRow("Cap", "Cap", function()
+            cosmeticSettings("Cap", Cosmetics.Cos.applyCap, "Cap color", "Detail color")
+        end, Cosmetics.Cos.applyCap)
+        moduleRow("Top hat", "TopHat", function()
+            cosmeticSettings("TopHat", Cosmetics.Cos.applyTopHat, "Band color", "Flower color")
+        end, Cosmetics.Cos.applyTopHat)
+        moduleRow("China hat", "ChinaHat", function()
+            cosmeticSettings("ChinaHat", Cosmetics.applyChinaHat, "Base color", "Top color")
+        end, Cosmetics.applyChinaHat)
+        moduleRow("Cat ears", "CatEars", function()
+            cosmeticSettings("CatEars", Cosmetics.Cos.applyCatEars, "Outer color", "Inner color")
+        end, Cosmetics.Cos.applyCatEars)
+        moduleRow("Demon horns", "Horns", function()
+            cosmeticSettings("Horns", Cosmetics.Cos.applyHorns, "Base color", "Tip color")
+        end, Cosmetics.Cos.applyHorns)
     end
     local function masks()
-        moduleRow("Oni mask", "OniMask", nil, Cosmetics.Cos.applyOniMask)
-        moduleRow("Gas mask", "GasMask", nil, Cosmetics.Cos.applyGasMask)
-        moduleRow("Neon mask", "NeonMask", nil, Cosmetics.Cos.applyNeonMask)
-        moduleRow("Neon visor", "Visor", nil, Cosmetics.Cos.applyVisor)
+        moduleRow("Oni mask", "OniMask", function()
+            cosmeticSettings("OniMask", Cosmetics.Cos.applyOniMask, "Mask color", "Eye color")
+        end, Cosmetics.Cos.applyOniMask)
+        moduleRow("Gas mask", "GasMask", function()
+            cosmeticSettings("GasMask", Cosmetics.Cos.applyGasMask, "Lens color", "Body color")
+        end, Cosmetics.Cos.applyGasMask)
+        moduleRow("Neon mask", "NeonMask", function()
+            cosmeticSettings("NeonMask", Cosmetics.Cos.applyNeonMask, "Neon color", "Detail color")
+        end, Cosmetics.Cos.applyNeonMask)
+        moduleRow("Neon visor", "Visor", function()
+            cosmeticSettings("Visor", Cosmetics.Cos.applyVisor, "Frame color", "Lens color")
+        end, Cosmetics.Cos.applyVisor)
     end
     local function packs()
-        moduleRow("Jetpack", "Jetpack", nil, Cosmetics.Cos.applyJetpack)
-        moduleRow("Cyber backpack", "CyberPack", nil, Cosmetics.Cos.applyCyberPack)
-        moduleRow("Angel backpack", "AngelPack", nil, Cosmetics.Cos.applyAngelPack)
-        moduleRow("Wings", "Wings", nil, Cosmetics.applyWings)
-        moduleRow("Scythe", "Scythe", nil, Cosmetics.Cos.applyScythe)
+        moduleRow("Jetpack", "Jetpack", function()
+            cosmeticSettings("Jetpack", Cosmetics.Cos.applyJetpack, "Core color", "Tank color")
+        end, Cosmetics.Cos.applyJetpack)
+        moduleRow("Cyber backpack", "CyberPack", function()
+            cosmeticSettings("CyberPack", Cosmetics.Cos.applyCyberPack, "Core color", "Armor color")
+        end, Cosmetics.Cos.applyCyberPack)
+        moduleRow("Angel backpack", "AngelPack", function()
+            cosmeticSettings("AngelPack", Cosmetics.Cos.applyAngelPack, "Feather color", "Gold color")
+        end, Cosmetics.Cos.applyAngelPack)
+        moduleRow("Wings", "Wings", function()
+            cosmeticSettings("Wings", Cosmetics.applyWings, "Upper color", "Tip color")
+        end, Cosmetics.applyWings)
+        moduleRow("Scythe", "Scythe", function()
+            cosmeticSettings("Scythe", Cosmetics.Cos.applyScythe, "Blade color", "Grip color")
+        end, Cosmetics.Cos.applyScythe)
     end
     local function auras()
-        moduleRow("Neon Aura", "Aura", nil, Cosmetics.Cos.applyAura)
-        moduleRow("Halo", "Halo", nil, Cosmetics.applyHalo)
+        moduleRow("Neon Aura", "Aura", function()
+            cosmeticSettings("Aura", Cosmetics.Cos.applyAura, "Inner color", "Outer color")
+        end, Cosmetics.Cos.applyAura)
+        moduleRow("Halo", "Halo", function()
+            cosmeticSettings("Halo", Cosmetics.applyHalo, "Halo color", "Spark color")
+        end, Cosmetics.applyHalo)
     end
     local function effects()
-        moduleRow("Kagune", "Kagune", nil, Cosmetics.applyKagune)
-        moduleRow("Neon tail", "Tail", nil, Cosmetics.Cos.applyTail)
+        moduleRow("Kagune", "Kagune", function()
+            cosmeticSettings("Kagune", Cosmetics.applyKagune, "Base color", "Tip color")
+        end, Cosmetics.applyKagune)
+        moduleRow("Neon tail", "Tail", function()
+            cosmeticSettings("Tail", Cosmetics.Cos.applyTail, "Base color", "Tip color")
+        end, Cosmetics.Cos.applyTail)
         moduleRow("Mini Fox", "Fox", function()
+            colorRow("Fur color", "FoxColor1", Cosmetics.applyFox)
+            colorRow("Accent color", "FoxColor2", Cosmetics.applyFox)
+            toggleRow("Glow", "FoxGlow", Cosmetics.applyFox)
             stepRow("Size", "FoxSize", 0.5, 2, 0.1, "", Cosmetics.applyFox)
         end, Cosmetics.applyFox)
-        moduleRow("Companion", "Companion", nil, Cosmetics.applyCompanion)
+        moduleRow("Companion", "Companion", function()
+            cosmeticSettings("Companion", Cosmetics.applyCompanion, "Inner color", "Outer color")
+        end, Cosmetics.applyCompanion)
         moduleRow("3D Dick", "Dong", function()
             stepRow("Size", "DongSize", 0.4, 3, 0.1, "", function()
                 if S.Dong then Cosmetics.applyDong() end
@@ -6627,7 +6886,6 @@ builders.cosmetics = function()
         moduleRow("Ghost legs", "GhostLegs", nil, applyGhostLegs)
         moduleRow("No animations", "NoAnims", nil, applyNoAnims)
     end
-    moduleRow("Glow all cosmetics", "CosmeticGlow", nil, Cosmetics.Cos.refresh)
     if folder == "all" or folder == "hats" then hats() end
     if folder == "all" or folder == "masks" then masks() end
     if folder == "all" or folder == "packs" then packs() end
