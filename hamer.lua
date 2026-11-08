@@ -210,21 +210,30 @@ local main = Instance.new("Frame")
 main.Name = "Main"
 main.AnchorPoint = Vector2.new(0.5, 0.5)
 main.Position = UDim2.new(0.5, 0, 0.5, 0)
-main.Size = UDim2.new(0, 760, 0, 520)
-main.BackgroundColor3 = Color3.fromRGB(22, 23, 27)
+main.Size = UDim2.new(0, 900, 0, 600)
+main.BackgroundColor3 = Color3.fromRGB(18, 21, 28)
 main.BackgroundTransparency = S.Transparent and 0.35 or 0
 main.BorderSizePixel = 0
+main.ClipsDescendants = true
 main.Visible = false
 main.ZIndex = 10
 main.Parent = gui
 local mainCorner = Instance.new("UICorner")
-mainCorner.CornerRadius = UDim.new(0, 18)
+mainCorner.CornerRadius = UDim.new(0, 20)
 mainCorner.Parent = main
 local mainStroke = Instance.new("UIStroke")
 mainStroke.Color = accent()
-mainStroke.Transparency = 0.6
-mainStroke.Thickness = 1.2
+mainStroke.Transparency = 0.55
+mainStroke.Thickness = 1.3
 mainStroke.Parent = main
+local mainGrad = Instance.new("UIGradient")
+mainGrad.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(23, 27, 36)),
+    ColorSequenceKeypoint.new(0.55, Color3.fromRGB(13, 16, 22)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(10, 12, 17))
+})
+mainGrad.Rotation = 125
+mainGrad.Parent = main
 
 local uiScale = Instance.new("UIScale")
 uiScale.Parent = main
@@ -233,10 +242,10 @@ local function computeScale()
     local vp = Camera.ViewportSize
     local sc
     if S.Mobile then
-        sc = math.min((vp.X - 16) / 760, (vp.Y - 16) / 520)
+        sc = math.min((vp.X - 16) / 900, (vp.Y - 16) / 600)
         return clamp(sc, 0.7, 2.4)
     end
-    sc = math.min((vp.X - 60) / 760, (vp.Y - 60) / 520, 1.15)
+    sc = math.min((vp.X - 60) / 900, (vp.Y - 60) / 600, 1.15)
     return clamp(sc, 0.6, 1.15)
 end
 uiScale.Scale = computeScale()
@@ -259,6 +268,25 @@ local function applyAccent()
 end
 bindAccent(function(c)
     mainStroke.Color = c
+end)
+
+local topLine = Instance.new("Frame")
+topLine.Size = UDim2.new(1, -28, 0, 2)
+topLine.Position = UDim2.new(0, 14, 0, 0)
+topLine.BackgroundColor3 = accent()
+topLine.BorderSizePixel = 0
+topLine.ZIndex = 13
+topLine.Parent = main
+local topLineGrad = Instance.new("UIGradient")
+topLineGrad.Rotation = 0
+topLineGrad.Parent = topLine
+bindAccent(function(c)
+    topLine.BackgroundColor3 = c
+    topLineGrad.Color = ColorSequence.new({
+        ColorSequenceKeypoint.new(0, c),
+        ColorSequenceKeypoint.new(0.55, c:Lerp(Color3.fromRGB(255, 255, 255), 0.35)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(168, 85, 247))
+    })
 end)
 
 local UI = {
@@ -338,6 +366,8 @@ local Loc = (function()
         ["Combat"] = "Бой", ["Flick"] = "Флик", ["Cosmetics"] = "Косметика", ["Visuals"] = "Визуалы",
         ["MM2"] = "MM2", ["Fun"] = "Развлечения", ["Places"] = "Места", ["Configs"] = "Конфиги",
         ["Themes"] = "Темы", ["Player"] = "Игрок", ["Search features..."] = "Поиск функций...",
+        ["NAVIGATION"] = "НАВИГАЦИЯ", ["CONNECTED"] = "ПОДКЛЮЧЕНО",
+        ["MODULES"] = "МОДУЛИ", ["PROFILE"] = "ПРОФИЛЬ",
         ["3D Dick"] = "3D член", ["Aimbot"] = "Аимбот", ["Angel backpack"] = "Ангельский рюкзак",
         ["Anti AFK"] = "Анти-АФК", ["Aspect Ratio"] = "Соотношение сторон", ["Auto collect"] = "Автосбор",
         ["Auto equip gun"] = "Авто-экип пистолета", ["Auto equip knife"] = "Авто-экип ножа",
@@ -650,14 +680,14 @@ local function stroke(inst, color, transparency, thickness)
 end
 
 local header = Instance.new("Frame")
-header.Size = UDim2.new(1, 0, 0, 58)
+header.Size = UDim2.new(1, 0, 0, 64)
 header.BackgroundTransparency = 1
 header.ZIndex = 11
 header.Parent = main
 
 local brandH = Instance.new("ImageLabel")
 brandH.Size = UDim2.new(0, 52, 0, 52)
-brandH.Position = UDim2.new(0, 16, 0, 3)
+brandH.Position = UDim2.new(0, 24, 0, 6)
 brandH.BackgroundTransparency = 1
 brandH.ZIndex = 12
 brandH.Parent = header
@@ -665,11 +695,11 @@ brandH.Parent = header
 local brandText = Instance.new("TextLabel")
 brandText.Text = "amer"
 brandText.Font = FONT_BLACK
-brandText.TextSize = FS(22)
+brandText.TextSize = FS(24)
 brandText.TextColor3 = UI.text
 brandText.TextXAlignment = Enum.TextXAlignment.Left
-brandText.Size = UDim2.new(0, 120, 1, 0)
-brandText.Position = UDim2.new(0, 60, 0, 0)
+brandText.Size = UDim2.new(0, 140, 1, 0)
+brandText.Position = UDim2.new(0, 68, 0, 0)
 brandText.BackgroundTransparency = 1
 brandText.ZIndex = 12
 brandText.Parent = header
@@ -680,15 +710,75 @@ bindAccent(function()
         brandH.Image = asset
         brandH.Visible = true
         brandText.Text = "amer"
-        brandText.Position = UDim2.new(0, 60, 0, 0)
-        brandText.TextSize = FS(22)
+        brandText.Position = UDim2.new(0, 68, 0, 0)
+        brandText.TextSize = FS(24)
     else
         brandH.Visible = false
         brandText.Text = "Hamer"
-        brandText.Position = UDim2.new(0, 22, 0, 0)
-        brandText.TextSize = FS(20)
+        brandText.Position = UDim2.new(0, 24, 0, 0)
+        brandText.TextSize = FS(22)
     end
 end)
+
+local profile = Instance.new("Frame")
+profile.Size = UDim2.new(0, 176, 0, 36)
+profile.Position = UDim2.new(1, -264, 0, 15)
+profile.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+profile.BackgroundTransparency = 0.93
+profile.BorderSizePixel = 0
+profile.ZIndex = 12
+profile.Parent = header
+corner(profile, 18)
+stroke(profile, UI.line, 0.9, 1)
+local profileDot = Instance.new("Frame")
+profileDot.Size = UDim2.new(0, 24, 0, 24)
+profileDot.Position = UDim2.new(0, 8, 0.5, -12)
+profileDot.BackgroundColor3 = accent()
+profileDot.BorderSizePixel = 0
+profileDot.ZIndex = 13
+profileDot.Parent = profile
+corner(profileDot, 12)
+bindAccent(function(c) profileDot.BackgroundColor3 = c end)
+local profileInitial = Instance.new("TextLabel")
+profileInitial.Text = string.sub(LocalPlayer.DisplayName ~= "" and LocalPlayer.DisplayName or LocalPlayer.Name, 1, 1)
+profileInitial.Font = FONT_BLACK
+profileInitial.TextSize = FS(10)
+profileInitial.TextColor3 = Color3.fromRGB(15, 18, 24)
+profileInitial.Size = UDim2.new(1, 0, 1, 0)
+profileInitial.BackgroundTransparency = 1
+profileInitial.ZIndex = 14
+profileInitial.Parent = profileDot
+local profileName = Instance.new("TextLabel")
+profileName.Text = string.sub(LocalPlayer.DisplayName ~= "" and LocalPlayer.DisplayName or LocalPlayer.Name, 1, 14)
+profileName.Font = FONT_BOLD
+profileName.TextSize = FS(10)
+profileName.TextColor3 = UI.text
+profileName.TextXAlignment = Enum.TextXAlignment.Left
+profileName.Size = UDim2.new(1, -44, 0, 16)
+profileName.Position = UDim2.new(0, 42, 0, 5)
+profileName.BackgroundTransparency = 1
+profileName.ZIndex = 13
+profileName.Parent = profile
+local profileSub = Instance.new("TextLabel")
+profileSub.Text = "premium"
+profileSub.Font = FONT_REG
+profileSub.TextSize = FS(8)
+profileSub.TextColor3 = UI.sub
+profileSub.TextXAlignment = Enum.TextXAlignment.Left
+profileSub.Size = UDim2.new(1, -44, 0, 12)
+profileSub.Position = UDim2.new(0, 42, 0, 20)
+profileSub.BackgroundTransparency = 1
+profileSub.ZIndex = 13
+profileSub.Parent = profile
+
+local headerLine = Instance.new("Frame")
+headerLine.Size = UDim2.new(1, -32, 0, 1)
+headerLine.Position = UDim2.new(0, 16, 0, 63)
+headerLine.BackgroundColor3 = UI.line
+headerLine.BackgroundTransparency = 0.92
+headerLine.BorderSizePixel = 0
+headerLine.ZIndex = 12
+headerLine.Parent = header
 
 local closeDot
 for i = 1, 3 do
@@ -702,7 +792,7 @@ for i = 1, 3 do
         d = Instance.new("Frame")
     end
     d.Size = UDim2.new(0, 12, 0, 12)
-    d.Position = UDim2.new(1, -22 - (3 - i) * 22, 0, 23)
+    d.Position = UDim2.new(1, -22 - (3 - i) * 22, 0, 26)
     d.BackgroundColor3 = isClose and Color3.fromRGB(240, 242, 246) or Color3.fromRGB(58, 61, 68)
     d.BorderSizePixel = 0
     d.ZIndex = 12
@@ -723,11 +813,23 @@ local tabs = {
     {id = "themes", label = "Themes", icon = "🎨"}
 }
 
+local navLabel = Instance.new("TextLabel")
+navLabel.Text = Loc.L("NAVIGATION")
+navLabel.Font = FONT_BOLD
+navLabel.TextSize = FS(8)
+navLabel.TextColor3 = UI.sub
+navLabel.TextXAlignment = Enum.TextXAlignment.Left
+navLabel.Size = UDim2.new(0, 160, 0, 14)
+navLabel.Position = UDim2.new(0, 26, 0, 78)
+navLabel.BackgroundTransparency = 1
+navLabel.ZIndex = 11
+navLabel.Parent = main
+
 local tabBar = Instance.new("Frame")
-local tabHeight = #tabs > 8 and (S.Mobile and 38 or 36) or (S.Mobile and 44 or 40)
-local tabGap = #tabs > 8 and 3 or 4
-tabBar.Size = UDim2.new(0, 156, 0, #tabs * tabHeight + (#tabs - 1) * tabGap)
-tabBar.Position = UDim2.new(0, 18, 0, 72)
+local tabHeight = 40
+local tabGap = 4
+tabBar.Size = UDim2.new(0, 166, 0, #tabs * tabHeight + (#tabs - 1) * tabGap)
+tabBar.Position = UDim2.new(0, 22, 0, 100)
 tabBar.BackgroundTransparency = 1
 tabBar.ZIndex = 11
 tabBar.Parent = main
@@ -738,8 +840,8 @@ tabList.SortOrder = Enum.SortOrder.LayoutOrder
 tabList.Parent = tabBar
 
 local tabDivider = Instance.new("Frame")
-tabDivider.Size = UDim2.new(0, 156, 0, 1)
-tabDivider.Position = UDim2.new(0, 18, 1, -64)
+tabDivider.Size = UDim2.new(0, 166, 0, 1)
+tabDivider.Position = UDim2.new(0, 22, 1, -76)
 tabDivider.BackgroundColor3 = UI.line
 tabDivider.BackgroundTransparency = 0.92
 tabDivider.BorderSizePixel = 0
@@ -747,8 +849,8 @@ tabDivider.ZIndex = 11
 tabDivider.Parent = main
 
 local playerBtn = Instance.new("TextButton")
-playerBtn.Size = UDim2.new(0, 156, 0, 48)
-playerBtn.Position = UDim2.new(0, 18, 1, -52)
+playerBtn.Size = UDim2.new(0, 166, 0, 46)
+playerBtn.Position = UDim2.new(0, 22, 1, -62)
 playerBtn.BackgroundColor3 = UI.card
 playerBtn.BackgroundTransparency = S.Transparent and 0.75 or 0.55
 playerBtn.BorderSizePixel = 0
@@ -788,37 +890,49 @@ playerTxt.ZIndex = 13
 playerTxt.Parent = playerBtn
 
 local content = Instance.new("Frame")
-content.Size = UDim2.new(1, -196, 1, -82)
-content.Position = UDim2.new(0, 182, 0, 68)
+content.Size = UDim2.new(1, -228, 1, -96)
+content.Position = UDim2.new(0, 206, 0, 76)
 content.BackgroundColor3 = UI.panel
 content.BackgroundTransparency = S.Transparent and 0.5 or 0
 content.BorderSizePixel = 0
 content.ZIndex = 10
 content.Parent = main
-corner(content, 16)
+corner(content, 18)
 stroke(content, UI.line, 0.94, 1)
 
 local contentTitle = Instance.new("TextLabel")
 contentTitle.Text = "VISUALS"
 contentTitle.Font = FONT_BLACK
-contentTitle.TextSize = FS(20)
+contentTitle.TextSize = FS(24)
 contentTitle.TextColor3 = UI.text
 contentTitle.TextXAlignment = Enum.TextXAlignment.Left
-contentTitle.Size = UDim2.new(1, -36, 0, 30)
+contentTitle.Size = UDim2.new(1, -36, 0, 32)
 contentTitle.Position = UDim2.new(0, 18, 0, 16)
 contentTitle.BackgroundTransparency = 1
 contentTitle.ZIndex = 12
 contentTitle.Parent = content
 
+local contentSubtitle = Instance.new("TextLabel")
+contentSubtitle.Text = Loc.L("MODULES")
+contentSubtitle.Font = FONT_REG
+contentSubtitle.TextSize = FS(10)
+contentSubtitle.TextColor3 = UI.sub
+contentSubtitle.TextXAlignment = Enum.TextXAlignment.Left
+contentSubtitle.Size = UDim2.new(1, -36, 0, 18)
+contentSubtitle.Position = UDim2.new(0, 18, 0, 52)
+contentSubtitle.BackgroundTransparency = 1
+contentSubtitle.ZIndex = 12
+contentSubtitle.Parent = content
+
 local searchFrame = Instance.new("Frame")
-searchFrame.Size = UDim2.new(1, -36, 0, 40)
-searchFrame.Position = UDim2.new(0, 18, 0, 58)
+searchFrame.Size = UDim2.new(1, -36, 0, 42)
+searchFrame.Position = UDim2.new(0, 18, 0, 80)
 searchFrame.BackgroundColor3 = UI.card
 searchFrame.BackgroundTransparency = S.Transparent and 0.55 or 0
 searchFrame.BorderSizePixel = 0
 searchFrame.ZIndex = 12
 searchFrame.Parent = content
-corner(searchFrame, 10)
+corner(searchFrame, 11)
 stroke(searchFrame, UI.line, 0.94, 1)
 
 local mag = Instance.new("Frame")
@@ -862,8 +976,8 @@ searchBox.ZIndex = 13
 searchBox.Parent = searchFrame
 
 local grid = Instance.new("ScrollingFrame")
-grid.Size = UDim2.new(1, -36, 1, -130)
-grid.Position = UDim2.new(0, 18, 0, 112)
+grid.Size = UDim2.new(1, -36, 1, -196)
+grid.Position = UDim2.new(0, 18, 0, 136)
 grid.BackgroundTransparency = 1
 grid.BorderSizePixel = 0
 grid.ScrollBarThickness = 3
@@ -878,6 +992,48 @@ local gridLayout = Instance.new("UIListLayout")
 gridLayout.Padding = UDim.new(0, 10)
 gridLayout.SortOrder = Enum.SortOrder.LayoutOrder
 gridLayout.Parent = grid
+
+local statusLine = Instance.new("Frame")
+statusLine.Size = UDim2.new(1, -36, 0, 1)
+statusLine.Position = UDim2.new(0, 18, 1, -38)
+statusLine.BackgroundColor3 = UI.line
+statusLine.BackgroundTransparency = 0.92
+statusLine.BorderSizePixel = 0
+statusLine.ZIndex = 11
+statusLine.Parent = content
+
+local statusDot = Instance.new("Frame")
+statusDot.Size = UDim2.new(0, 7, 0, 7)
+statusDot.Position = UDim2.new(0, 18, 1, -26)
+statusDot.BackgroundColor3 = Color3.fromRGB(74, 222, 128)
+statusDot.BorderSizePixel = 0
+statusDot.ZIndex = 12
+statusDot.Parent = content
+corner(statusDot, 4)
+
+local statusText = Instance.new("TextLabel")
+statusText.Text = Loc.L("CONNECTED")
+statusText.Font = FONT_BOLD
+statusText.TextSize = FS(8)
+statusText.TextColor3 = Color3.fromRGB(154, 230, 180)
+statusText.TextXAlignment = Enum.TextXAlignment.Left
+statusText.Size = UDim2.new(0, 100, 0, 14)
+statusText.Position = UDim2.new(0, 30, 1, -30)
+statusText.BackgroundTransparency = 1
+statusText.ZIndex = 12
+statusText.Parent = content
+
+local statusRight = Instance.new("TextLabel")
+statusRight.Text = "HAMER  /  UI"
+statusRight.Font = FONT_BOLD
+statusRight.TextSize = FS(8)
+statusRight.TextColor3 = UI.sub
+statusRight.TextXAlignment = Enum.TextXAlignment.Right
+statusRight.Size = UDim2.new(0, 160, 0, 14)
+statusRight.Position = UDim2.new(1, -178, 1, -30)
+statusRight.BackgroundTransparency = 1
+statusRight.ZIndex = 12
+statusRight.Parent = content
 
 local builders = {}
 local tabButtons = {}
@@ -900,7 +1056,7 @@ end
 
 local function cardBase(titleText, subText, reserveRight)
     local card = Instance.new("TextButton")
-    card.Size = UDim2.new(1, 0, 0, S.Mobile and 96 or 86)
+    card.Size = UDim2.new(1, 0, 0, S.Mobile and 102 or 92)
     card.BackgroundColor3 = UI.card
     card.BackgroundTransparency = S.Transparent and 0.45 or 0
     card.BorderSizePixel = 0
@@ -909,19 +1065,19 @@ local function cardBase(titleText, subText, reserveRight)
     card.LayoutOrder = nextOrder()
     card.ZIndex = 12
     card.Parent = grid
-    corner(card, 11)
+    corner(card, 13)
     local st = stroke(card, UI.line, 0.93, 1)
     local rw = reserveRight or 54
     local tl = Instance.new("TextLabel")
     tl.Text = Loc.L(titleText)
     tl.Font = FONT_BOLD
-    tl.TextSize = FS(14)
+    tl.TextSize = FS(15)
     tl.TextColor3 = UI.text
     tl.TextXAlignment = Enum.TextXAlignment.Left
     tl.TextYAlignment = Enum.TextYAlignment.Top
     tl.TextWrapped = true
-    tl.Size = UDim2.new(1, -(24 + rw), 0, 20)
-    tl.Position = UDim2.new(0, 14, 0, subText and 16 or 24)
+    tl.Size = UDim2.new(1, -(24 + rw), 0, 22)
+    tl.Position = UDim2.new(0, 16, 0, subText and 17 or 27)
     tl.BackgroundTransparency = 1
     tl.ZIndex = 13
     tl.Parent = card
@@ -934,8 +1090,8 @@ local function cardBase(titleText, subText, reserveRight)
         sb.TextXAlignment = Enum.TextXAlignment.Left
         sb.TextYAlignment = Enum.TextYAlignment.Top
         sb.TextWrapped = true
-        sb.Size = UDim2.new(1, -(24 + rw), 0, 36)
-        sb.Position = UDim2.new(0, 14, 0, 40)
+        sb.Size = UDim2.new(1, -(24 + rw), 0, 38)
+        sb.Position = UDim2.new(0, 16, 0, 43)
         sb.BackgroundTransparency = 1
         sb.ZIndex = 13
         sb.Parent = card
@@ -1201,20 +1357,38 @@ local function moduleRow(text, key, settingsFn, onChange)
     holder.LayoutOrder = nextOrder()
     holder.ZIndex = 12
     holder.Parent = grid
-    corner(holder, 11)
+    corner(holder, 13)
     local hst = stroke(holder, UI.line, 0.93, 1)
+
+    local stateBar
+    if key then
+        stateBar = Instance.new("Frame")
+        stateBar.Size = UDim2.new(0, 3, 0, 24)
+        stateBar.Position = UDim2.new(0, 0, 0, 34)
+        stateBar.BackgroundColor3 = accent()
+        stateBar.BorderSizePixel = 0
+        stateBar.Visible = S[key] and true or false
+        stateBar.ZIndex = 15
+        stateBar.Parent = holder
+        corner(stateBar, 2)
+        bindAccent(function(c) stateBar.BackgroundColor3 = c end)
+    end
+    local function syncState()
+        if stateBar then stateBar.Visible = S[key] and true or false end
+    end
 
     local hlist = Instance.new("UIListLayout")
     hlist.SortOrder = Enum.SortOrder.LayoutOrder
     hlist.Parent = holder
 
-    local headH = S.Mobile and 86 or 76
+    local headH = S.Mobile and 102 or 92
     local head = Instance.new("Frame")
     head.Size = UDim2.new(1, 0, 0, headH)
     head.BackgroundTransparency = 1
     head.LayoutOrder = 1
     head.ZIndex = 12
     head.Parent = holder
+    if stateBar then stateBar.Parent = head end
 
     local headBtn = Instance.new("TextButton")
     headBtn.Size = UDim2.new(1, 0, 1, 0)
@@ -1232,13 +1406,13 @@ local function moduleRow(text, key, settingsFn, onChange)
     local tl = Instance.new("TextLabel")
     tl.Text = Loc.L(text)
     tl.Font = FONT_BOLD
-    tl.TextSize = FS(14)
+    tl.TextSize = FS(15)
     tl.TextColor3 = UI.text
     tl.TextXAlignment = Enum.TextXAlignment.Left
     tl.TextYAlignment = Enum.TextYAlignment.Top
     tl.TextWrapped = true
-    tl.Size = UDim2.new(1, -(28 + reserve), 0, 20)
-    tl.Position = UDim2.new(0, 16, 0, 15)
+    tl.Size = UDim2.new(1, -(28 + reserve), 0, 22)
+    tl.Position = UDim2.new(0, 18, 0, 17)
     tl.BackgroundTransparency = 1
     tl.ZIndex = 13
     tl.Parent = head
@@ -1251,8 +1425,8 @@ local function moduleRow(text, key, settingsFn, onChange)
     sb.TextXAlignment = Enum.TextXAlignment.Left
     sb.TextYAlignment = Enum.TextYAlignment.Top
     sb.TextWrapped = true
-    sb.Size = UDim2.new(1, -(28 + reserve), 0, 34)
-    sb.Position = UDim2.new(0, 16, 0, 39)
+    sb.Size = UDim2.new(1, -(28 + reserve), 0, 38)
+    sb.Position = UDim2.new(0, 18, 0, 43)
     sb.BackgroundTransparency = 1
     sb.ZIndex = 13
     sb.Parent = head
@@ -1273,7 +1447,7 @@ local function moduleRow(text, key, settingsFn, onChange)
 
     local box, mark, bst
     if key then
-        box, mark, bst = makeBox(head, -46, -15, 30)
+        box, mark, bst = makeBox(head, -48, -16, 32)
         box.BackgroundColor3 = UI.field
         styleBox(box, mark, bst, S[key])
         local btn = Instance.new("TextButton")
@@ -1286,6 +1460,7 @@ local function moduleRow(text, key, settingsFn, onChange)
         btn.MouseButton1Click:Connect(function()
             S[key] = not S[key]
             styleBox(box, mark, bst, S[key])
+            syncState()
             click()
             if onChange then onChange(S[key]) end
         end)
@@ -1317,10 +1492,12 @@ local function moduleRow(text, key, settingsFn, onChange)
 
     headBtn.MouseEnter:Connect(function()
         tw(holder, 0.12, {BackgroundColor3 = UI.cardHi})
-        hst.Transparency = 0.86
+        hst.Color = accent()
+        hst.Transparency = 0.78
     end)
     headBtn.MouseLeave:Connect(function()
         tw(holder, 0.12, {BackgroundColor3 = UI.card})
+        hst.Color = UI.line
         hst.Transparency = 0.93
     end)
 
@@ -1329,6 +1506,7 @@ local function moduleRow(text, key, settingsFn, onChange)
             if key then
                 S[key] = not S[key]
                 styleBox(box, mark, bst, S[key])
+                syncState()
             end
             click()
             if key and onChange then onChange(S[key]) end
@@ -1675,11 +1853,17 @@ selectTab = function(id)
         end
     end
     for _, t in ipairs(tabs) do
-        if t.id == id then contentTitle.Text = string.upper(Loc.L(t.label)) end
+        if t.id == id then
+            contentTitle.Text = string.upper(Loc.L(t.label))
+            contentSubtitle.Text = string.upper(Loc.L(t.label)) .. "  ·  " .. Loc.L("MODULES")
+        end
     end
     clearContent()
     if searchBox.Text ~= "" then searchBox.Text = "" end
-    if id == "player" then contentTitle.Text = string.upper(Loc.L("Player")) end
+    if id == "player" then
+        contentTitle.Text = string.upper(Loc.L("Player"))
+        contentSubtitle.Text = string.upper(Loc.L("Player")) .. "  ·  " .. Loc.L("PROFILE")
+    end
     if builders[id] then
         local ok, err = pcall(builders[id])
         if not ok then
@@ -1782,6 +1966,8 @@ local function applyLanguageUI()
         if b and b.txt then b.txt.Text = Loc.L(t.label) end
     end
     if playerTxt then playerTxt.Text = Loc.L("Player") end
+    if navLabel then navLabel.Text = Loc.L("NAVIGATION") end
+    if statusText then statusText.Text = Loc.L("CONNECTED") end
     if currentTab and S.MenuOpen then selectTab(currentTab) end
 end
 
