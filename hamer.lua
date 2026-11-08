@@ -3007,6 +3007,8 @@ bindAccent(function(c) UI.fovStroke.Color = c end)
 UI.flyBV, UI.flyBG = nil, nil
 local Farm = {bv = nil, bg = nil, wasOn = false}
 local noclipSaved = {}
+local noclipConns = {}
+local noclipChar = nil
 local hitboxSaved = {}
 local hitboxAcc = 0
 local autoAcc = 0
@@ -3142,6 +3144,51 @@ end
 return {farm = Farm, update = updateCoinFarm, stop = stopCoinFarm}
 end)()
 
+local function noclipActive()
+    return S.Noclip or (S.CoinFarm and (S.FarmNoClip or S.FarmUnderMap))
+end
+
+local function restoreNoclip()
+    for _, c in pairs(noclipConns) do c:Disconnect() end
+    for p, v in pairs(noclipSaved) do
+        if p.Parent and p.CanCollide ~= v then p.CanCollide = v end
+    end
+    noclipSaved = {}
+    noclipConns = {}
+    noclipChar = nil
+end
+
+local function updateNoclip(char)
+    char = char or LocalPlayer.Character
+    if not char then return end
+    if noclipChar ~= char then
+        restoreNoclip()
+        noclipChar = char
+    end
+    if not noclipActive() then
+        if next(noclipSaved) then restoreNoclip() end
+        return
+    end
+    for _, p in ipairs(char:GetDescendants()) do
+        if p:IsA("BasePart") then
+            if noclipSaved[p] == nil then
+                noclipSaved[p] = p.CanCollide
+                noclipConns[p] = p:GetPropertyChangedSignal("CanCollide"):Connect(function()
+                    if noclipActive() and p.Parent and p.CanCollide then
+                        p.CanCollide = false
+                    end
+                end)
+            end
+            if p.CanCollide then p.CanCollide = false end
+        end
+    end
+end
+
+conn((RunService.PreSimulation or RunService.Stepped):Connect(function()
+    if Unloaded then return end
+    updateNoclip()
+end))
+
 conn(RunService.Heartbeat:Connect(function(dt)
     if Unloaded then return end
     local char = LocalPlayer.Character
@@ -3177,21 +3224,7 @@ conn(RunService.Heartbeat:Connect(function(dt)
         updateFly(char, hum, root)
     end
 
-    if char then
-        if S.Noclip or (S.CoinFarm and (S.FarmNoClip or S.FarmUnderMap)) then
-            for _, p in ipairs(char:GetDescendants()) do
-                if p:IsA("BasePart") and noclipSaved[p] == nil then
-                    noclipSaved[p] = p.CanCollide
-                    p.CanCollide = false
-                end
-            end
-        else
-            for p, v in pairs(noclipSaved) do
-                if p.Parent then p.CanCollide = v end
-            end
-            noclipSaved = {}
-        end
-    end
+    updateNoclip(char)
 
     hitboxAcc = hitboxAcc + dt
     if hitboxAcc >= 0.3 then
@@ -6719,10 +6752,7 @@ local function unload()
     Cosmetics.Cos.applyCap()
     Cosmetics.Cos.applyCyberPack()
     Cosmetics.Cos.applyAngelPack()
-    for p, v in pairs(noclipSaved) do
-        if p.Parent then p.CanCollide = v end
-    end
-    noclipSaved = {}
+    restoreNoclip()
     if UI.flyBV then UI.flyBV:Destroy() end
     if UI.flyBG then UI.flyBG:Destroy() end
     Coin.stop()
